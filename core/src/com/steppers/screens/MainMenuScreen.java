@@ -48,8 +48,13 @@ public class MainMenuScreen extends UIScreen {
     @Override
     public void render(float opacity) {
         spriteBatch.begin();
+        spriteBatch.setColor(1,1,1, opacity);
         spriteBatch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         spriteBatch.end();
+
+        // Enable alpha blending again
+        Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
+        Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         quitButton.render(opacity);

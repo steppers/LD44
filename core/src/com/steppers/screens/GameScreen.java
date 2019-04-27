@@ -38,9 +38,7 @@ public class GameScreen extends UIScreen {
 
         mapDisplay = new UIMapDisplay(50, 300, 200, 40);
         mapDisplay.convertToPercentagePos();
-        /*gameButton.setHandler(() -> {
-            UIManager.Get().transitionToScreen("game_screen", 0.3f);
-        });*/
+
         for(UIButton button : mapDisplay.getButtons()){
             registerElement(button);
         }
@@ -53,11 +51,15 @@ public class GameScreen extends UIScreen {
 
     @Override
     public void render(float opacity) {
+        batch.enableBlending();
         batch.begin();
-
+        batch.setColor(1,1,1, opacity);
         batch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-
         batch.end();
+
+        // Enable alpha blending again
+        Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
+        Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         backButton.render(opacity);
@@ -67,6 +69,7 @@ public class GameScreen extends UIScreen {
         bloodBank.render(opacity);
         shapeRenderer.end();
 
+        batch.enableBlending();
         batch.begin();
         backButton.renderText(opacity);
         bloodBank.renderText(opacity);

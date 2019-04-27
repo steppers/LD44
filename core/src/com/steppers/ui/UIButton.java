@@ -39,7 +39,7 @@ public class UIButton extends UIElement {
         if(isMouseOver(x, y)) {
             switch (event) {
                 case MOUSE_DOWN:
-                    color.set(baseColor.r*1.8f, baseColor.g*1.8f, baseColor.b*1.8f, 1.0f);
+                    color.set(baseColor.r*2, baseColor.g*2, baseColor.b*2, 1.0f);
                     mouseDown = true;
                     break;
                 case MOUSE_UP:
@@ -52,7 +52,7 @@ public class UIButton extends UIElement {
                     break;
                 case MOUSE_MOVED:
                 case MOUSE_DRAGGED:
-                    color.set(baseColor.r*1.4f, baseColor.g*1.4f, baseColor.b*1.4f, 1.0f);
+                    color.set(baseColor.r*1.5f, baseColor.g*1.5f, baseColor.b*1.5f, 1.0f);
                     break;
             }
         } else {
