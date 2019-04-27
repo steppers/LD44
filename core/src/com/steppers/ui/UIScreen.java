@@ -1,4 +1,4 @@
-package com.steppers.ld44;
+package com.steppers.ui;
 
 public class UIScreen {
 

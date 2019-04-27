@@ -1,6 +1,9 @@
-package com.steppers.ld44;
+package com.steppers.screens;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.ld44.Renderer;
+import com.steppers.ui.UIManager;
+import com.steppers.ui.UIScreen;
 
 public class SplashScreen extends UIScreen {
 
