@@ -11,4 +11,13 @@ public class Being {
         this.lifeBlood = lifeBlood;
     }
 
+    public int getLifeBlood(){
+        return lifeBlood;
+    }
+
+    public void setLifeBlood(int lifeBlood){
+        this.lifeBlood = lifeBlood;
+    }
+
+
 }
