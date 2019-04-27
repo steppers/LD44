@@ -19,6 +19,8 @@ public class UIMapDisplay extends UIElement {
     ShapeRenderer shapeRenderer;
     Map dungeonMap;
 
+    boolean active = true;
+
     public UIMapDisplay(float x, float y, float width, float height, Map dungeonMap) {
         super(x, y, width, height);
 
@@ -53,34 +55,44 @@ public class UIMapDisplay extends UIElement {
     }
 
     public void render(float opacity) {
-        shapeRenderer.setColor(Color.DARK_GRAY);
-        shapeRenderer.rect( bounds.x - 3, bounds.y + 3, bounds.width + 6, - bounds.height - 6);
-        shapeRenderer.setColor(Color.GRAY);
-        shapeRenderer.rect( bounds.x, bounds.y, bounds.width, - bounds.height);
+        if(active) {
+            shapeRenderer.setColor(Color.DARK_GRAY);
+            shapeRenderer.rect(bounds.x - 3, bounds.y + 3, bounds.width + 6, -bounds.height - 6);
+            shapeRenderer.setColor(Color.GRAY);
+            shapeRenderer.rect(bounds.x, bounds.y, bounds.width, -bounds.height);
 
-        shapeRenderer.setColor(Color.DARK_GRAY);
-        shapeRenderer.rect( bounds.x + ((6*bounds.width)/16), bounds.y - 170, 70, 70);
+            shapeRenderer.setColor(Color.DARK_GRAY);
+            shapeRenderer.rect(bounds.x + ((6 * bounds.width) / 16), bounds.y - 160, 70, 70);
+            shapeRenderer.setColor(new Color(0.1f, 0.1f, 0.1f, 1f));
+            shapeRenderer.rect(bounds.x + ((6 * bounds.width) / 16) + 3, bounds.y - 157, 64, 64);
 
 
-        ArrayList<Room> nextRooms = dungeonMap.getNextLevelRooms();
+            ArrayList<Room> nextRooms = dungeonMap.getNextLevelRooms();
 
-        for(UIButton button : getButtons()){
-            button.render(opacity);
+            for (UIButton button : getButtons()) {
+                button.render(opacity);
+            }
+
+            shapeRenderer.end();
+
+            spriteBatch.begin();
+            if (nextRooms.size() == 1) {
+                spriteBatch.draw(nextRooms.get(0).getSymbol(), bounds.x + ((6 * bounds.width) / 16), bounds.y - 80);
+            } else {
+                spriteBatch.draw(nextRooms.get(0).getSymbol(), bounds.x + (bounds.width / 16), (bounds.y - 80));
+                spriteBatch.draw(nextRooms.get(1).getSymbol(), bounds.x + ((6 * bounds.width) / 16), bounds.y - 80);
+                spriteBatch.draw(nextRooms.get(2).getSymbol(), bounds.x + (11 * bounds.width / 16), (bounds.y - 80));
+            }
+
+            spriteBatch.draw(dungeonMap.getCurrentRoom().getSymbol(), bounds.x + (6 * bounds.width / 16), (bounds.y - 160));
+            spriteBatch.end();
+
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         }
+    }
 
-        shapeRenderer.end();
-
-        spriteBatch.begin();
-        if(nextRooms.size() == 1) {
-            spriteBatch.draw(nextRooms.get(0).getSymbol(), bounds.x + ((6*bounds.width)/16), bounds.y - 80);
-        } else {
-            spriteBatch.draw(nextRooms.get(0).getSymbol(), bounds.x + (bounds.width/16), (bounds.y - 80));
-            spriteBatch.draw(nextRooms.get(1).getSymbol(), bounds.x + ((6*bounds.width)/16), bounds.y - 80);
-            spriteBatch.draw(nextRooms.get(2).getSymbol(), bounds.x + (11*bounds.width/16), (bounds.y - 80));
-        }
-        spriteBatch.end();
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+    public void setActive(boolean active){
+        this.active = active;
     }
 
 }

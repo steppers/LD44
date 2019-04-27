@@ -41,7 +41,7 @@ public class GameScreen extends UIScreen {
         });
         registerElement(backButton);
 
-        mapDisplay = new UIMapDisplay(650, 180, 260, 180, gameState.getDungeonMap());
+        mapDisplay = new UIMapDisplay(650, 160, 260, 180, gameState.getDungeonMap());
         for(UIButton button : mapDisplay.getButtons()){
             registerElement(button);
         }
