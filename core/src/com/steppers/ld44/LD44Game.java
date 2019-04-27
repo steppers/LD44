@@ -39,6 +39,8 @@ public class LD44Game extends ApplicationAdapter {
 		Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
 		Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
 
+		Renderer.Get().GetSpriteBatch().enableBlending();
+
 		uiManager.render();
 	}
 	

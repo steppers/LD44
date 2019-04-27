@@ -51,7 +51,6 @@ public class GameScreen extends UIScreen {
 
     @Override
     public void render(float opacity) {
-        batch.enableBlending();
         batch.begin();
         batch.setColor(1,1,1, opacity);
         batch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
@@ -69,7 +68,6 @@ public class GameScreen extends UIScreen {
         bloodBank.render(opacity);
         shapeRenderer.end();
 
-        batch.enableBlending();
         batch.begin();
         backButton.renderText(opacity);
         bloodBank.renderText(opacity);
