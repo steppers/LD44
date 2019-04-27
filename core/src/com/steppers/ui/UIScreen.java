@@ -18,6 +18,10 @@ public class UIScreen {
         return registered;
     }
 
+    public void onTransitionedTo() {
+
+    }
+
     public void update(float dt) {
 
     }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
+import com.steppers.ui.UIManager;
 import com.steppers.ui.UIScreen;
 
 public class MMScreen extends UIScreen {
@@ -18,6 +19,9 @@ public class MMScreen extends UIScreen {
         button = new UIButton(50, 50, 100, 60);
         button.setAlignment(UIElement.Alignment.ALIGN_C);
         button.convertToPercentagePos();
+        button.setHandler(() -> {
+            UIManager.Get().transitionToScreen("splash");
+        });
         registerElement(button);
     }
 

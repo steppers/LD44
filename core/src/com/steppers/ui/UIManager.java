@@ -74,6 +74,8 @@ public class UIManager implements InputProcessor {
                 nextScreen = null;
                 activeOpacity = 1.0f;
                 nextOpacity = 0.0f;
+
+                activeScreen.onTransitionedTo();
             }
         }
     }

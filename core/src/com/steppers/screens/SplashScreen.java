@@ -17,6 +17,11 @@ public class SplashScreen extends UIScreen {
     }
 
     @Override
+    public void onTransitionedTo() {
+        UIManager.Get().transitionToScreen("main_menu");
+    }
+
+    @Override
     public void render(float opacity) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1, 0, 0, opacity);
