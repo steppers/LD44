@@ -40,12 +40,12 @@ public class UIBloodCircle extends UIElement {
         for(int i = 0; i < 5; ++i)
         {
             v1.set(0, bounds.height/2);
-            v1.setAngle(i * (360.0f / 5) + 90);
+            v1.setAngle(i * (360.0f / 5) + 54);
             v1.add(bounds.x, bounds.y);
             for(int j = i; j < 5; ++j)
             {
                 v2.set(0, bounds.height/2);
-                v2.setAngle(j * (360.0f / 5) + 90);
+                v2.setAngle(j * (360.0f / 5) + 54);
                 v2.add(bounds.x, bounds.y);
                 shapeRenderer.rectLine(v1, v2, 3);
             }
