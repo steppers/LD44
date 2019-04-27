@@ -36,7 +36,7 @@ public class GameScreen extends UIScreen {
         });
         registerElement(backButton);
 
-        mapDisplay = new UIMapDisplay(50, 50, 500, 40);
+        mapDisplay = new UIMapDisplay(50, 300, 200, 40);
         mapDisplay.convertToPercentagePos();
         /*gameButton.setHandler(() -> {
             UIManager.Get().transitionToScreen("game_screen", 0.3f);
@@ -56,7 +56,9 @@ public class GameScreen extends UIScreen {
     @Override
     public void render(float opacity) {
         batch.begin();
+
         batch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

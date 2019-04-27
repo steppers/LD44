@@ -8,34 +8,27 @@ import java.util.ArrayList;
 
 public class UIMapDisplay extends UIElement {
 
-    private UIButton leftRoomButton = null;
-    private UIButton middleRoomButton = null;
-    private UIButton rightRoomButton = null;
+    private UITextButton leftRoomButton = null;
+    private UITextButton middleRoomButton = null;
+    private UITextButton rightRoomButton = null;
 
     ShapeRenderer shapeRenderer;
 
     public UIMapDisplay(float x, float y, float width, float height) {
         super(x, y, width, height);
-        leftRoomButton = new UITextButton(x + (width/16), height + 30, width/4, 40, Color.BROWN ,"1");
-        middleRoomButton = new UITextButton(x + ((6*width)/16), height + 30, width/4, 40, Color.BROWN, "2");
-        rightRoomButton = new UITextButton(x + ((11*width)/16), height + 30, width/4, 40, Color.BROWN, "3");
+        leftRoomButton = new UITextButton(x + (width/16), y + 30, width/4, 40, Color.DARK_GRAY ,"1");
+        middleRoomButton = new UITextButton(x + ((6*width)/16), y + 30, width/4, 40, Color.DARK_GRAY, "2");
+        rightRoomButton = new UITextButton(x + ((11*width)/16), y + 30, width/4, 40, Color.DARK_GRAY, "3");
 
         shapeRenderer = Renderer.Get().GetShapeRenderer();
     }
 
-    public ArrayList<UIButton> getButtons(){
-        ArrayList<UIButton> buttons = new ArrayList<>();
+    public ArrayList<UITextButton> getButtons() {
+        ArrayList<UITextButton> buttons = new ArrayList<>();
         buttons.add(leftRoomButton);
         buttons.add(middleRoomButton);
         buttons.add(rightRoomButton);
         return buttons;
-    }
-
-    public void convertToPercentagePos(){
-        super.convertToPercentagePos();
-        leftRoomButton.convertToPercentagePos();
-        middleRoomButton.convertToPercentagePos();
-        rightRoomButton.convertToPercentagePos();
     }
 
 
