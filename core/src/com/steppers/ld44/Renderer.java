@@ -2,6 +2,7 @@ package com.steppers.ld44;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -26,6 +27,8 @@ public class Renderer {
     private BitmapFont font20;
     private BitmapFont font24;
 
+    private Texture background;
+
     public ShapeRenderer GetShapeRenderer() {
         return shapeRenderer;
     }
@@ -40,7 +43,17 @@ public class Renderer {
         return camera;
     }
 
-    public void SetupFonts() {
+    public Texture GetBackgroundTexture() {
+        return background;
+    }
+
+    public void Setup() {
+        SetupCamera();
+        SetupFonts();
+        SetupTextures();
+    }
+
+    private void SetupFonts() {
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(
                 Gdx.files.internal("Intruder.ttf")
         );
@@ -67,7 +80,7 @@ public class Renderer {
         font24 = fontGenerator.generateFont(freeTypeFontParameter);
     }
 
-    public void SetupCamera() {
+    private void SetupCamera() {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float aspect_ratio = w / h;
@@ -76,6 +89,11 @@ public class Renderer {
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
         spriteBatch.setProjectionMatrix(camera.combined);
+    }
+
+    private void SetupTextures() {
+        background = new Texture("StoneWallTileableSmall.png");
+        background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     }
 
     public void dispose() {

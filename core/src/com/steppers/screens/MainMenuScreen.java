@@ -1,6 +1,7 @@
 package com.steppers.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.ld44.Renderer;
@@ -15,6 +16,8 @@ public class MainMenuScreen extends UIScreen {
 
     ShapeRenderer shapeRenderer;
     SpriteBatch spriteBatch;
+
+    Texture background;
 
     UIButton gameButton;
     UIButton quitButton;
@@ -39,19 +42,23 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(gameButton);
 
+        background = Renderer.Get().GetBackgroundTexture();
     }
 
     @Override
     public void render(float opacity) {
+        spriteBatch.begin();
+        spriteBatch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        spriteBatch.end();
+
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         quitButton.render(opacity);
         gameButton.render(opacity);
         shapeRenderer.end();
 
-
-        Renderer.Get().GetSpriteBatch().begin();
+        spriteBatch.begin();
         quitButton.renderText(opacity);
         gameButton.renderText(opacity);
-        Renderer.Get().GetSpriteBatch().end();
+        spriteBatch.end();
     }
 }

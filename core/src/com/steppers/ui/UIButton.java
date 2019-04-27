@@ -18,7 +18,7 @@ public class UIButton extends UIElement {
     boolean mouseDown;
 
     public UIButton(float x, float y, float width, float height) {
-        this(x, y, width, height, new Color(0.6f, 0.6f, 0.6f, 1.0f));
+        this(x, y, width, height, new Color(0.2f, 0.2f, 0.2f, 1.0f));
     }
 
     public UIButton(float x, float y, float width, float height, Color color) {
@@ -39,7 +39,7 @@ public class UIButton extends UIElement {
         if(isMouseOver(x, y)) {
             switch (event) {
                 case MOUSE_DOWN:
-                    color.set(baseColor.r*1.5f, baseColor.g*1.5f, baseColor.b*1.5f, 1.0f);
+                    color.set(baseColor.r*1.8f, baseColor.g*1.8f, baseColor.b*1.8f, 1.0f);
                     mouseDown = true;
                     break;
                 case MOUSE_UP:
@@ -52,7 +52,7 @@ public class UIButton extends UIElement {
                     break;
                 case MOUSE_MOVED:
                 case MOUSE_DRAGGED:
-                    color.set(baseColor.r*1.2f, baseColor.g*1.2f, baseColor.b*1.2f, 1.0f);
+                    color.set(baseColor.r*1.4f, baseColor.g*1.4f, baseColor.b*1.4f, 1.0f);
                     break;
             }
         } else {
@@ -69,5 +69,7 @@ public class UIButton extends UIElement {
     public void render(float opacity) {
         shapeRenderer.setColor(color.r, color.g, color.b, opacity);
         shapeRenderer.rect( bounds.x, bounds.y, bounds.width, bounds.height);
+        shapeRenderer.setColor(color.r*0.5f, color.g*0.5f, color.b*0.5f, opacity);
+        shapeRenderer.rect( bounds.x+2, bounds.y+2, bounds.width-4, bounds.height-4);
     }
 }

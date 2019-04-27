@@ -22,7 +22,7 @@ public class UIBloodBank extends UIElement {
 
         bloodTexture = new Texture("blood_droplet.png");
 
-        blood = 3;
+        blood = 7;
         maxBlood = (int)width / bloodTexture.getWidth();
     }
 
@@ -32,12 +32,12 @@ public class UIBloodBank extends UIElement {
         shapeRenderer.setColor(0.10f, 0.1f, 0.1f, opacity);
         shapeRenderer.rect( bounds.x, bounds.y, bounds.width, bounds.height);
         shapeRenderer.setColor(0.2f, 0.2f, 0.2f, opacity);
-        shapeRenderer.rect( bounds.x, bounds.y + 3, bounds.width-3, bounds.height-3);
+        shapeRenderer.rect( bounds.x, bounds.y + 2, bounds.width-2, bounds.height-2);
     }
 
     public void renderText(float opacity) {
         for(int i = 0; i < blood; ++i) {
-            spriteBatch.draw(bloodTexture, i * bloodTexture.getWidth() + i * 3, bounds.y + 4);
+            spriteBatch.draw(bloodTexture, i * bloodTexture.getWidth() + i * 3, bounds.y + 3);
         }
     }
 }

@@ -16,8 +16,7 @@ public class LD44Game extends ApplicationAdapter {
 
 		// Setup the camera and inputs
 		uiManager = UIManager.Get();
-		Renderer.Get().SetupCamera();
-		Renderer.Get().SetupFonts();
+		Renderer.Get().Setup();
 		Gdx.input.setInputProcessor(uiManager);
 
 		// Start the splash screen

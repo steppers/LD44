@@ -45,9 +45,7 @@ public class GameScreen extends UIScreen {
             registerElement(button);
         }
 
-        Pixmap px=new Pixmap(Gdx.files.internal("StoneWallTileableSmall.png"));
-        background=new Texture(px);
-        background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        background = Renderer.Get().GetBackgroundTexture();
 
         bloodBank = new UIBloodBank(0, 512, 255, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
