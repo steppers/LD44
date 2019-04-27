@@ -1,10 +1,13 @@
 package com.steppers.gamestate;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Room {
 
     private boolean visited;
     private boolean visible;
     protected int roomType;
+    protected Texture symbol;
 
     public boolean isVisited(){
         return visited;
@@ -24,6 +27,14 @@ public class Room {
 
     public int getRoomType(){
         return roomType;
+    }
+
+    public void setSymbol(Texture symbol){
+        this.symbol = symbol;
+    }
+
+    public Texture getSymbol(){
+        return symbol;
     }
 
 

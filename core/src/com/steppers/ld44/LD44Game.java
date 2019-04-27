@@ -3,6 +3,7 @@ package com.steppers.ld44;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.steppers.gamestate.GameState;
 import com.steppers.screens.GameScreen;
 import com.steppers.screens.SplashScreen;
 import com.steppers.ui.UIManager;
@@ -10,9 +11,12 @@ import com.steppers.ui.UIManager;
 public class LD44Game extends ApplicationAdapter {
 
 	private UIManager uiManager;
+	GameState gameState;
 	
 	@Override
 	public void create () {
+
+		gameState = new GameState();
 
 		// Setup the camera and inputs
 		uiManager = UIManager.Get();
@@ -24,7 +28,7 @@ public class LD44Game extends ApplicationAdapter {
 		uiManager.setActiveScreen("splash");
 
 		// Register additional screens
-		uiManager.registerScreen(new GameScreen(), "game_screen");
+		uiManager.registerScreen(new GameScreen(gameState), "game_screen");
 	}
 
 	@Override

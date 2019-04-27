@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.gamestate.GameState;
+import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
@@ -26,7 +28,8 @@ public class GameScreen extends UIScreen {
 
     UIMapDisplay mapDisplay;
 
-    public GameScreen() {
+
+    public GameScreen(GameState gameState) {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         batch = Renderer.Get().GetSpriteBatch();
 
@@ -36,9 +39,7 @@ public class GameScreen extends UIScreen {
         });
         registerElement(backButton);
 
-        mapDisplay = new UIMapDisplay(50, 300, 200, 40);
-        mapDisplay.convertToPercentagePos();
-
+        mapDisplay = new UIMapDisplay(650, 180, 260, 180, gameState.getDungeonMap());
         for(UIButton button : mapDisplay.getButtons()){
             registerElement(button);
         }
@@ -62,10 +63,8 @@ public class GameScreen extends UIScreen {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         backButton.render(opacity);
-        for(UIButton button : mapDisplay.getButtons()){
-            button.render(opacity);
-        }
         bloodBank.render(opacity);
+        mapDisplay.render(opacity);
         shapeRenderer.end();
 
         batch.begin();

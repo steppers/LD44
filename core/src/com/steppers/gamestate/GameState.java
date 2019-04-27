@@ -11,7 +11,6 @@ public class GameState {
         character = new Character(startLifeBlood);
         dungeonMap = new Map();
         dungeonMap.generateMap();
-        dungeonMap.addConnection(0,1);
     }
 
     public Map getDungeonMap(){
