@@ -20,7 +20,7 @@ public class SplashScreen extends UIScreen {
     public void render(float opacity) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1, 0, 0, opacity);
-        shapeRenderer.rect( 100, 100, 100, 100);
+        shapeRenderer.rect( 100, 6, 100, 500);
         shapeRenderer.end();
     }
 }
