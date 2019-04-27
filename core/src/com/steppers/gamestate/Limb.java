@@ -1,4 +1,4 @@
-package com.steppers.ld44;
+package com.steppers.gamestate;
 
 class Limb {
     protected int blood;
