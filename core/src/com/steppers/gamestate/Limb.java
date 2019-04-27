@@ -15,6 +15,10 @@ class Limb {
         return alive;
     }
 
+    public void setAlive(boolean alive){
+        this.alive = alive;
+    }
+
     public int getBlood(){
         return blood;
     }
@@ -32,6 +36,21 @@ class Limb {
         }
 
         return total;
+    }
+
+    public boolean removeChildLimb(Limb limb){
+        boolean success = false;
+
+        for(Limb child : children){
+            if(child == limb){
+                children.remove(limb);
+                success = true;
+            }
+            if(child.removeChildLimb(limb)){
+                success = true;
+            }
+        }
+        return success;
     }
 
 }
