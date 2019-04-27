@@ -3,11 +3,14 @@ package com.steppers.gamestate;
 import java.util.ArrayList;
 
 class Limb {
+
+    private String name;
     protected boolean alive;
     protected int blood;
-    ArrayList<Limb> children = new ArrayList<Limb>();
+    private ArrayList<Limb> children = new ArrayList<Limb>();
 
-    public Limb(int blood){
+    public Limb(String name, int blood){
+        this.name = name;
         this.blood = blood;
     }
 

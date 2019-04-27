@@ -19,6 +19,14 @@ public class Being {
         this.lifeBlood = lifeBlood;
     }
 
+    public void inflictDamage(int damage){
+        this.lifeBlood -= damage;
+    }
+
+    public void heal(int heal){
+        this.lifeBlood += heal;
+    }
+
     public boolean addLimb(Limb limb){
         return limbs.add(limb);
     }

@@ -6,6 +6,8 @@ public class Character extends Being {
 
     private ArrayList<Follower> followers = new ArrayList<Follower>();
 
+    private int currentRoom;
+
     public Character(int lifeBlood) {
         super(lifeBlood);
     }
@@ -20,6 +22,14 @@ public class Character extends Being {
 
     public ArrayList<Follower> getFollowers(){
         return followers;
+    }
+
+    public void moveToRoomNumber(int roomNumber){
+        this.currentRoom = roomNumber;
+    }
+
+    public int getRoomNumber(){
+        return currentRoom;
     }
 
 }
