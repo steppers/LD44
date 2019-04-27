@@ -8,21 +8,22 @@ import com.steppers.ui.UIManager;
 
 public class LD44Game extends ApplicationAdapter {
 
-	UIManager uiManager;
-	SplashScreen splashScreen;
+	private UIManager uiManager;
 	
 	@Override
 	public void create () {
+		// Enable alpha blending
 		Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
 		Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
+
+		// Setup the camera and inputs
 		uiManager = UIManager.Get();
-
-		splashScreen = new SplashScreen();
-		uiManager.registerScreen(splashScreen, "splash");
-		uiManager.setActiveScreen("splash");
-
 		Renderer.Get().SetupCamera();
-		Gdx.input.setInputProcessor(UIManager.Get());
+		Gdx.input.setInputProcessor(uiManager);
+
+		// Start the splash screen
+		uiManager.registerScreen(new SplashScreen(), "splash");
+		uiManager.setActiveScreen("splash");
 	}
 
 	@Override

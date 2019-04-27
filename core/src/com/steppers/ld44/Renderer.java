@@ -30,7 +30,7 @@ public class Renderer {
         float h = Gdx.graphics.getHeight();
         float aspect_ratio = w / h;
 
-        camera.setToOrtho(false, aspect_ratio * 512, 512);
+        camera.setToOrtho(true, aspect_ratio * 512, 512);
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
     }
