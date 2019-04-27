@@ -20,6 +20,8 @@ public class LD44Game extends ApplicationAdapter {
 		splashScreen = new SplashScreen();
 		uiManager.registerScreen(splashScreen, "splash");
 		uiManager.setActiveScreen("splash");
+
+		Renderer.Get().SetupCamera();
 	}
 
 	@Override

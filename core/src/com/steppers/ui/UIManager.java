@@ -1,5 +1,7 @@
 package com.steppers.ui;
 
+import com.steppers.ld44.Renderer;
+
 import java.util.HashMap;
 
 public class UIManager {
