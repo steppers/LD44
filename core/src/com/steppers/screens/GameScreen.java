@@ -45,7 +45,7 @@ public class GameScreen extends UIScreen {
 
         background = Renderer.Get().GetBackgroundTexture();
 
-        bloodBank = new UIBloodBank(0, 512, 255, 36);
+        bloodBank = new UIBloodBank(0, 512, 0, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
     }
 

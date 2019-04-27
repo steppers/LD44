@@ -22,8 +22,11 @@ public class UIBloodBank extends UIElement {
 
         bloodTexture = new Texture("blood_droplet.png");
 
-        blood = 7;
-        maxBlood = (int)width / bloodTexture.getWidth();
+        blood = 0;
+        maxBlood = 10;
+
+        bounds.width = 1 + (maxBlood * bloodTexture.getWidth()) + (maxBlood*3);
+        addBlood(5);
     }
 
     public void update(float dt) {}
@@ -37,7 +40,23 @@ public class UIBloodBank extends UIElement {
 
     public void renderText(float opacity) {
         for(int i = 0; i < blood; ++i) {
-            spriteBatch.draw(bloodTexture, i * bloodTexture.getWidth() + i * 3, bounds.y + 3);
+            spriteBatch.draw(bloodTexture, 1 + i * bloodTexture.getWidth() + i * 3, bounds.y + 3);
         }
+    }
+
+    public int getBlood() {
+        return blood;
+    }
+
+    public void useBlood(int amount) {
+        if(amount > blood)
+            System.err.println("Using too much blood! The blood bank can't supply this much!");
+        blood -= amount;
+        blood = Math.max(blood, 0);
+    }
+
+    public void addBlood(int amount) {
+        blood += amount;
+        blood = Math.min(blood, maxBlood);
     }
 }
