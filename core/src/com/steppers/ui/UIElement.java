@@ -1,6 +1,5 @@
 package com.steppers.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.steppers.ld44.Renderer;
 
@@ -22,88 +21,78 @@ public class UIElement {
     protected Alignment alignment;
 
     public UIElement(float x, float y, float width, float height) {
-        this(x, y, width, height, false, false);
-    }
-
-    public UIElement(float x, float y, float width, float height, boolean percentagePos, boolean percentageSize) {
         bounds = new Rectangle(x, y, width, height);
-        alignment = Alignment.ALIGN_TL;
-
-        if(percentagePos)
-            convertToPercentagePos();
-        if(percentageSize)
-            convertToPercentageSize();
+        alignment = Alignment.ALIGN_BL;
     }
 
     private void resetAlignment() {
         switch (this.alignment) {
             case ALIGN_TL:
+                bounds.y += bounds.height;
                 break;
             case ALIGN_TC:
+                bounds.y += bounds.height;
                 bounds.x += bounds.width / 2;
                 break;
             case ALIGN_TR:
+                bounds.y += bounds.height;
                 bounds.x += bounds.width;
                 break;
             case ALIGN_CL:
                 bounds.y += bounds.height / 2;
                 break;
             case ALIGN_C:
-                bounds.x += bounds.width / 2;
                 bounds.y += bounds.height / 2;
+                bounds.x += bounds.width / 2;
                 break;
             case ALIGN_CR:
-                bounds.x += bounds.width;
                 bounds.y += bounds.height / 2;
+                bounds.x += bounds.width;
                 break;
             case ALIGN_BL:
-                bounds.y += bounds.height;
                 break;
             case ALIGN_BC:
                 bounds.x += bounds.width / 2;
-                bounds.y += bounds.height;
                 break;
             case ALIGN_BR:
                 bounds.x += bounds.width;
-                bounds.y += bounds.height;
                 break;
-
         }
-        this.alignment = Alignment.ALIGN_TL;
+        this.alignment = Alignment.ALIGN_BL;
     }
 
     public void setAlignment(Alignment alignment) {
         resetAlignment();
         switch (alignment) {
             case ALIGN_TL:
+                bounds.y -= bounds.height;
                 break;
             case ALIGN_TC:
+                bounds.y -= bounds.height;
                 bounds.x -= bounds.width / 2;
                 break;
             case ALIGN_TR:
+                bounds.y -= bounds.height;
                 bounds.x -= bounds.width;
                 break;
             case ALIGN_CL:
                 bounds.y -= bounds.height / 2;
                 break;
             case ALIGN_C:
-                bounds.x -= bounds.width / 2;
                 bounds.y -= bounds.height / 2;
+                bounds.x -= bounds.width / 2;
                 break;
             case ALIGN_CR:
-                bounds.x -= bounds.width;
                 bounds.y -= bounds.height / 2;
+                bounds.x -= bounds.width;
                 break;
             case ALIGN_BL:
-                bounds.y -= bounds.height;
                 break;
             case ALIGN_BC:
                 bounds.x -= bounds.width / 2;
-                bounds.y -= bounds.height;
                 break;
             case ALIGN_BR:
                 bounds.x -= bounds.width;
-                bounds.y -= bounds.height;
                 break;
 
         }

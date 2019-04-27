@@ -23,7 +23,7 @@ public class MainMenuScreen extends UIScreen {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        quitButton = new UITextButton(50, 97, 150, 40, "Quit");
+        quitButton = new UITextButton(50, 3, 150, 40, "Quit");
         quitButton.setAlignment(UIElement.Alignment.ALIGN_BC);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {

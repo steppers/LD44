@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
+import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;
 import com.steppers.ui.UIMapDisplay;
 import com.steppers.ui.UIScreen;
@@ -23,15 +24,13 @@ public class GameScreen extends UIScreen {
 
     Texture background;
 
-    SpriteBatch batch;
-
     UIMapDisplay mapDisplay;
 
     public GameScreen() {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         batch = Renderer.Get().GetSpriteBatch();
 
-        backButton = new UITextButton(5, 457, 60, 50, "Back");
+        backButton = new UITextButton(5, 5, 60, 50, "Back");
         backButton.setHandler(() -> {
             UIManager.Get().transitionToScreen("main_menu", 0.3f);
         });
@@ -50,7 +49,8 @@ public class GameScreen extends UIScreen {
         background=new Texture(px);
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
-        bloodBank = new UIBloodBank(0, 0, 255, 36);
+        bloodBank = new UIBloodBank(0, 512, 255, 36);
+        bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
     }
 
     @Override
@@ -64,6 +64,12 @@ public class GameScreen extends UIScreen {
         for(UIButton button : mapDisplay.getButtons()){
             button.render(opacity);
         }
+        bloodBank.render(opacity);
+        shapeRenderer.end();
+
+        batch.begin();
+        backButton.renderText(opacity);
+        bloodBank.renderText(opacity);
         batch.end();
     }
 }

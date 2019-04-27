@@ -46,7 +46,6 @@ public class Renderer {
         );
         FreeTypeFontGenerator.FreeTypeFontParameter freeTypeFontParameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
-        freeTypeFontParameter.flip = true;
 
         freeTypeFontParameter.size = 12;
         fontGenerator.generateData(freeTypeFontParameter);
@@ -73,7 +72,7 @@ public class Renderer {
         float h = Gdx.graphics.getHeight();
         float aspect_ratio = w / h;
 
-        camera.setToOrtho(true, aspect_ratio * 512, 512);
+        camera.setToOrtho(false, aspect_ratio * 512, 512);
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
         spriteBatch.setProjectionMatrix(camera.combined);
