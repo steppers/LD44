@@ -26,15 +26,15 @@ public class MainMenuScreen extends UIScreen {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        quitButton = new UITextButton(50, 3, 150, 40, "Quit");
-        quitButton.setAlignment(UIElement.Alignment.ALIGN_BC);
+        quitButton = new UITextButton(50, 43, 150, 40, "Quit");
+        quitButton.setAlignment(UIElement.Alignment.ALIGN_C);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {
             Gdx.app.exit();
         });
         registerElement(quitButton);
 
-        gameButton = new UITextButton(50, 50, 150, 40, "New Game");
+        gameButton = new UITextButton(50, 57, 150, 40, "Play Game");
         gameButton.setAlignment(UIElement.Alignment.ALIGN_C);
         gameButton.convertToPercentagePos();
         gameButton.setHandler(() -> {

@@ -15,20 +15,35 @@ public class UIBloodCircle extends UIElement {
     private SpriteBatch spriteBatch;
 
     private ArrayList<Follower> followers;
+    private ArrayList<UIBeingCard> beingCards;
 
     public UIBloodCircle(float x, float y, float width, float height) {
         super(x, y, width, height);
 
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
+
+        followers = new ArrayList<>();
+        beingCards = new ArrayList<>();
     }
 
-    public void AddFollower(Follower follower) {
+    public void addFollower(Follower follower) {
         followers.add(follower);
+        UIBeingCard card = new UIBeingCard(0,0,40,40);
+        card.setAlignment(Alignment.ALIGN_C);
+        card.setBeing(follower);
+        beingCards.add(card);
     }
 
-    public void RemoveFollower(Follower follower) {
+    public void removeFollower(Follower follower) {
         followers.remove(follower);
+        for (UIBeingCard bc : beingCards) {
+            if(bc.getBeing() == follower)
+            {
+                beingCards.remove(bc);
+                break;
+            }
+        }
     }
 
     public void render(float opacity) {
@@ -37,18 +52,28 @@ public class UIBloodCircle extends UIElement {
 
         Vector2 v1 = new Vector2();
         Vector2 v2 = new Vector2();
-        for(int i = 0; i < 5; ++i)
+        for(int i = 0; i < followers.size(); ++i)
         {
             v1.set(0, bounds.height/2);
-            v1.setAngle(i * (360.0f / 5) + 54);
+            v1.setAngle(i * (360.0f / followers.size()) + 90);
             v1.add(bounds.x, bounds.y);
-            for(int j = i; j < 5; ++j)
+            for(int j = i; j < followers.size(); ++j)
             {
                 v2.set(0, bounds.height/2);
-                v2.setAngle(j * (360.0f / 5) + 54);
+                v2.setAngle(j * (360.0f / followers.size()) + 90);
                 v2.add(bounds.x, bounds.y);
                 shapeRenderer.rectLine(v1, v2, 3);
             }
+        }
+
+        for(int i = 0; i < beingCards.size(); ++i)
+        {
+            v1.set(0, bounds.height/2);
+            v1.setAngle(i * (360.0f / followers.size()) + 90);
+            v1.add(bounds.x, bounds.y);
+
+            beingCards.get(i).moveTo(v1.x, v1.y);
+            beingCards.get(i).render(opacity);
         }
 
         shapeRenderer.end();

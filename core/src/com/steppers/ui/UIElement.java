@@ -126,7 +126,12 @@ public class UIElement {
     }
 
     public void moveTo(float x, float y) {
+        Alignment align = this.alignment;
+        resetAlignment();
+
         bounds.setPosition(x, y);
+
+        setAlignment(align);
     }
 
     public void resize(float width, float height) {

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.gamestate.Follower;
 import com.steppers.gamestate.GameState;
 import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
@@ -58,6 +59,12 @@ public class GameScreen extends UIScreen {
 
         bloodCircle = new UIBloodCircle(50, 40, 300, 300);
         bloodCircle.convertToPercentagePos();
+
+        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(new Follower(3));
     }
 
     @Override
