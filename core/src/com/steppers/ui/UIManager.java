@@ -136,11 +136,30 @@ public class UIManager implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        // ignore if its not first touch pointer
+        if (pointer > 0) return false;
+
+        if(nextScreen == null)
+        {
+            Renderer.Get().GetCamera().unproject(tp.set(screenX, screenY, 0));
+            for (UIElement e: activeScreen.getRegisteredElements()) {
+                if(e.handleMouseEvent(tp.x, tp.y, MouseEvent.MOUSE_DRAGGED))
+                    return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
+        if(nextScreen == null)
+        {
+            Renderer.Get().GetCamera().unproject(tp.set(screenX, screenY, 0));
+            for (UIElement e: activeScreen.getRegisteredElements()) {
+                if(e.handleMouseEvent(tp.x, tp.y, MouseEvent.MOUSE_MOVED))
+                    return true;
+            }
+        }
         return false;
     }
 

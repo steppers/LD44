@@ -12,15 +12,21 @@ public class UIButton extends UIElement {
 
     ShapeRenderer shapeRenderer;
     Color color;
+    Color baseColor;
     ButtonHandler handler;
 
     boolean mouseDown;
 
     public UIButton(float x, float y, float width, float height) {
+        this(x, y, width, height, new Color(0.6f, 0.6f, 0.6f, 1.0f));
+    }
+
+    public UIButton(float x, float y, float width, float height, Color color) {
         super(x, y, width, height);
 
         shapeRenderer = Renderer.Get().GetShapeRenderer();
-        color = new Color(0.6f, 0.6f, 0.6f, 1.0f);
+        baseColor = color;
+        this.color = new Color(baseColor);
         mouseDown = false;
         handler = null;
     }
@@ -33,20 +39,24 @@ public class UIButton extends UIElement {
         if(isMouseOver(x, y)) {
             switch (event) {
                 case MOUSE_DOWN:
-                    color.set(0.8f, 0.8f, 0.8f, 1.0f);
+                    color.set(baseColor.r*1.5f, baseColor.g*1.5f, baseColor.b*1.5f, 1.0f);
                     mouseDown = true;
                     break;
                 case MOUSE_UP:
-                    color.set(0.6f, 0.6f, 0.6f, 1.0f);
+                    color.set(baseColor);
                     if(mouseDown && handler != null)
                     {
                         handler.onActivate();
                     }
                     mouseDown = false;
                     break;
+                case MOUSE_MOVED:
+                case MOUSE_DRAGGED:
+                    color.set(baseColor.r*1.2f, baseColor.g*1.2f, baseColor.b*1.2f, 1.0f);
+                    break;
             }
         } else {
-            color.set(0.6f, 0.6f, 0.6f, 1.0f);
+            color.set(baseColor);
             mouseDown = false;
             return false;
         }
