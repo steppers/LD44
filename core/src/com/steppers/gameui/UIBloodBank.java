@@ -14,7 +14,6 @@ public class UIBloodBank extends UIElement {
 
     Texture bloodTexture;
     int maxBlood, blood;
-    String bloodCountString;
 
     public UIBloodBank(float x, float y, float width, float height) {
         super(x, y, width, height);

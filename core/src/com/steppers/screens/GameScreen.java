@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.gamestate.Character;
 import com.steppers.gamestate.Follower;
 import com.steppers.gamestate.GameState;
 import com.steppers.gamestate.Map;
@@ -57,13 +58,18 @@ public class GameScreen extends UIScreen {
         enemyDisplay = new UIEnemyDisplay(50, 100, 200, 200, gameState);
         enemyDisplay.convertToPercentagePos();
 
-        bloodCircle = new UIBloodCircle(50, 40, 300, 300);
+        bloodCircle = new UIBloodCircle(50, 44, 300, 300);
         bloodCircle.convertToPercentagePos();
+        Character character = gameState.getCharacter();
+        bloodCircle.setCharacter(character);
+        for(Follower f : character.getFollowers()) {
+            bloodCircle.addFollower(f);
+        }
 
         bloodCircle.addFollower(new Follower(3));
-        bloodCircle.addFollower(new Follower(3));
-        bloodCircle.addFollower(new Follower(3));
-        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(new Follower(5));
+        bloodCircle.addFollower(new Follower(2));
+        bloodCircle.addFollower(new Follower(8));
         bloodCircle.addFollower(new Follower(3));
     }
 
@@ -90,6 +96,7 @@ public class GameScreen extends UIScreen {
         batch.begin();
         backButton.renderText(opacity);
         bloodBank.renderText(opacity);
+        bloodCircle.renderText(opacity);
         batch.end();
     }
 }
