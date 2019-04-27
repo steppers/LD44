@@ -1,6 +1,7 @@
 package com.steppers.gameui;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.ld44.Renderer;
@@ -13,6 +14,7 @@ public class UIBloodBank extends UIElement {
 
     Texture bloodTexture;
     int maxBlood, blood;
+    String bloodCountString;
 
     public UIBloodBank(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -25,8 +27,11 @@ public class UIBloodBank extends UIElement {
         blood = 0;
         maxBlood = 10;
 
-        bounds.width = 1 + (maxBlood * bloodTexture.getWidth()) + (maxBlood*3);
-        addBlood(5);
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(Renderer.Get().GetFont24(), maxBlood + "/" + maxBlood);
+
+        bounds.width = 1 + (maxBlood * bloodTexture.getWidth()) + (maxBlood*3) + glyphLayout.width + 6;
+        addBlood(7);
     }
 
     public void update(float dt) {}
@@ -42,6 +47,13 @@ public class UIBloodBank extends UIElement {
         for(int i = 0; i < blood; ++i) {
             spriteBatch.draw(bloodTexture, 1 + i * bloodTexture.getWidth() + i * 3, bounds.y + 3);
         }
+
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(Renderer.Get().GetFont24(), maxBlood + "/" + maxBlood);
+        float textX = (1 + maxBlood * bloodTexture.getWidth() + maxBlood * 3);
+
+        Renderer.Get().GetFont24().setColor(1, 0, 0, opacity);
+        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), blood + "/" + maxBlood, textX + ((bounds.width - textX) - glyphLayout.width)/2, bounds.y + 4 + ((bounds.height-3) + glyphLayout.height)/2);
     }
 
     public int getBlood() {
