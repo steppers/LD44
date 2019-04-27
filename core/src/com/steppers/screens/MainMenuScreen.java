@@ -1,24 +1,28 @@
 package com.steppers.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;
 import com.steppers.ui.UIScreen;
+import com.steppers.ui.UITextButton;
 
 public class MainMenuScreen extends UIScreen {
 
     ShapeRenderer shapeRenderer;
+    SpriteBatch spriteBatch;
 
     UIButton gameButton;
     UIButton quitButton;
 
     public MainMenuScreen() {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
+        spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        quitButton = new UIButton(50, 97, 100, 60);
+        quitButton = new UITextButton(50, 97, 100, 60, "Quit");
         quitButton.setAlignment(UIElement.Alignment.ALIGN_BC);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {
@@ -26,7 +30,7 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(quitButton);
 
-        gameButton = new UIButton(50, 50, 100, 60);
+        gameButton = new UITextButton(50, 50, 100, 60, "New Game");
         gameButton.setAlignment(UIElement.Alignment.ALIGN_C);
         gameButton.convertToPercentagePos();
         gameButton.setHandler(() -> {
@@ -41,5 +45,11 @@ public class MainMenuScreen extends UIScreen {
         quitButton.render(opacity);
         gameButton.render(opacity);
         shapeRenderer.end();
+
+
+        Renderer.Get().GetSpriteBatch().begin();
+        quitButton.renderText(opacity);
+        gameButton.renderText(opacity);
+        Renderer.Get().GetSpriteBatch().end();
     }
 }

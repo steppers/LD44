@@ -1,5 +1,6 @@
 package com.steppers.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
@@ -81,6 +82,10 @@ public class UIManager implements InputProcessor {
     }
 
     public void render() {
+        // Enable blending
+        Renderer.Get().GetSpriteBatch().enableBlending();
+        Renderer.Get().GetSpriteBatch().setBlendFunction(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
+
         activeScreen.render(activeOpacity);
         if(nextScreen != null)
             nextScreen.render(nextOpacity);

@@ -152,5 +152,6 @@ public class UIElement {
 
     public void update(float dt) {}
     public void render(float opacity) {}
+    public void renderText(float opacity) {}
 
 }

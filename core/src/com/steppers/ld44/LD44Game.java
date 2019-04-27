@@ -13,9 +13,6 @@ public class LD44Game extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		// Enable alpha blending
-		Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
-		Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
 
 		// Setup the camera and inputs
 		uiManager = UIManager.Get();
@@ -37,6 +34,11 @@ public class LD44Game extends ApplicationAdapter {
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		// Enable alpha blending
+		Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
+		Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
+
 		uiManager.render();
 	}
 	

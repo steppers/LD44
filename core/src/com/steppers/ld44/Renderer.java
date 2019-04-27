@@ -2,6 +2,8 @@ package com.steppers.ld44;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Renderer {
@@ -17,9 +19,14 @@ public class Renderer {
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private OrthographicCamera camera = new OrthographicCamera();
 
+    private SpriteBatch spriteBatch = new SpriteBatch();
+    private BitmapFont font = new BitmapFont(true);
+
     public ShapeRenderer GetShapeRenderer() {
         return shapeRenderer;
     }
+    public SpriteBatch GetSpriteBatch() { return spriteBatch; }
+    public BitmapFont GetFont() { return font; }
 
     public OrthographicCamera GetCamera() {
         return camera;
@@ -33,6 +40,7 @@ public class Renderer {
         camera.setToOrtho(true, aspect_ratio * 512, 512);
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
+        spriteBatch.setProjectionMatrix(camera.combined);
     }
 
     public void dispose() {
