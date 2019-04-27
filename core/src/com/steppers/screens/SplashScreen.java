@@ -12,7 +12,7 @@ public class SplashScreen extends UIScreen {
     public SplashScreen() {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
 
-        UIManager.Get().registerScreen(new MMScreen(), "main_menu");
+        UIManager.Get().registerScreen(new MainMenuScreen(), "main_menu");
         UIManager.Get().transitionToScreen("main_menu");
     }
 
