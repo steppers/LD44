@@ -7,27 +7,33 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LD44Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+
+	UIManager uiManager;
+	SplashScreen splashScreen;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
+		Gdx.gl.glBlendFunc(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
+		uiManager = UIManager.Get();
+
+		splashScreen = new SplashScreen();
+		uiManager.registerScreen(splashScreen, "splash");
+		uiManager.setActiveScreen("splash");
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		float deltaTime = Gdx.graphics.getDeltaTime();
+		uiManager.update(deltaTime);
+
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		uiManager.render();
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		Renderer.Get().dispose();
 	}
 }
