@@ -1,10 +1,13 @@
 package com.steppers.ui;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 import com.steppers.ld44.Renderer;
 
 import java.util.HashMap;
 
-public class UIManager {
+public class UIManager implements InputProcessor {
 
     // Singleton
     static UIManager ins = new UIManager();
@@ -81,4 +84,66 @@ public class UIManager {
             nextScreen.render(nextOpacity);
     }
 
+    Vector3 tp = new Vector3();
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        // ignore if its not left mouse button or first touch pointer
+        if (button != Input.Buttons.LEFT || pointer > 0) return false;
+
+        if(nextScreen == null)
+        {
+            Renderer.Get().GetCamera().unproject(tp.set(screenX, screenY, 0));
+            for (UIElement e: activeScreen.getRegisteredElements()) {
+                if(e.handleMouseEvent(tp.x, tp.y, MouseEvent.MOUSE_DOWN))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        // ignore if its not left mouse button or first touch pointer
+        if (button != Input.Buttons.LEFT || pointer > 0) return false;
+
+        if(nextScreen == null)
+        {
+            Renderer.Get().GetCamera().unproject(tp.set(screenX, screenY, 0));
+            for (UIElement e: activeScreen.getRegisteredElements()) {
+                if(e.handleMouseEvent(tp.x, tp.y, MouseEvent.MOUSE_UP))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
+    }
 }

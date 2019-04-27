@@ -22,6 +22,7 @@ public class LD44Game extends ApplicationAdapter {
 		uiManager.setActiveScreen("splash");
 
 		Renderer.Get().SetupCamera();
+		Gdx.input.setInputProcessor(UIManager.Get());
 	}
 
 	@Override
