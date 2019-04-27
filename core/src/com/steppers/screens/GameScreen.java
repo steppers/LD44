@@ -9,6 +9,7 @@ import com.steppers.gamestate.GameState;
 import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.gameui.UIBloodCircle;
+import com.steppers.gameui.UIEnemyDisplay;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
@@ -29,6 +30,7 @@ public class GameScreen extends UIScreen {
     Texture background;
 
     UIMapDisplay mapDisplay;
+    UIEnemyDisplay enemyDisplay;
 
 
     public GameScreen(GameState gameState) {
@@ -51,6 +53,9 @@ public class GameScreen extends UIScreen {
         bloodBank = new UIBloodBank(0, 512, 0, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
 
+        enemyDisplay = new UIEnemyDisplay(50, 100, 200, 200, gameState);
+        enemyDisplay.convertToPercentagePos();
+
         bloodCircle = new UIBloodCircle(50, 40, 300, 300);
         bloodCircle.convertToPercentagePos();
     }
@@ -70,6 +75,7 @@ public class GameScreen extends UIScreen {
         backButton.render(opacity);
         bloodBank.render(opacity);
         mapDisplay.render(opacity);
+        enemyDisplay.render(opacity);
         shapeRenderer.end();
 
         bloodCircle.render(opacity);
