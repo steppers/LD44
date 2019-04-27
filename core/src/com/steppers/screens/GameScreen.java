@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.gamestate.GameState;
 import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
+import com.steppers.gameui.UIBloodCircle;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
@@ -23,6 +24,7 @@ public class GameScreen extends UIScreen {
 
     UIButton backButton;
     UIBloodBank bloodBank;
+    UIBloodCircle bloodCircle;
 
     Texture background;
 
@@ -48,6 +50,9 @@ public class GameScreen extends UIScreen {
 
         bloodBank = new UIBloodBank(0, 512, 0, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
+
+        bloodCircle = new UIBloodCircle(50, 40, 300, 300);
+        bloodCircle.convertToPercentagePos();
     }
 
     @Override
@@ -66,6 +71,8 @@ public class GameScreen extends UIScreen {
         bloodBank.render(opacity);
         mapDisplay.render(opacity);
         shapeRenderer.end();
+
+        bloodCircle.render(opacity);
 
         batch.begin();
         backButton.renderText(opacity);
