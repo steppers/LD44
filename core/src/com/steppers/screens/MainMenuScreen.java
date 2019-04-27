@@ -22,7 +22,7 @@ public class MainMenuScreen extends UIScreen {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        quitButton = new UITextButton(50, 97, 100, 60, "Quit");
+        quitButton = new UITextButton(50, 97, 150, 40, "Quit");
         quitButton.setAlignment(UIElement.Alignment.ALIGN_BC);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {
@@ -30,7 +30,7 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(quitButton);
 
-        gameButton = new UITextButton(50, 50, 100, 60, "New Game");
+        gameButton = new UITextButton(50, 50, 150, 40, "New Game");
         gameButton.setAlignment(UIElement.Alignment.ALIGN_C);
         gameButton.convertToPercentagePos();
         gameButton.setHandler(() -> {

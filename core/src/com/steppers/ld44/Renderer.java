@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Renderer {
@@ -18,18 +19,53 @@ public class Renderer {
 
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private OrthographicCamera camera = new OrthographicCamera();
-
     private SpriteBatch spriteBatch = new SpriteBatch();
-    private BitmapFont font = new BitmapFont(true);
+
+    private BitmapFont font12;
+    private BitmapFont font16;
+    private BitmapFont font20;
+    private BitmapFont font24;
 
     public ShapeRenderer GetShapeRenderer() {
         return shapeRenderer;
     }
     public SpriteBatch GetSpriteBatch() { return spriteBatch; }
-    public BitmapFont GetFont() { return font; }
+
+    public BitmapFont GetFont12() { return font12; }
+    public BitmapFont GetFont16() { return font16; }
+    public BitmapFont GetFont20() { return font20; }
+    public BitmapFont GetFont24() { return font24; }
 
     public OrthographicCamera GetCamera() {
         return camera;
+    }
+
+    public void SetupFonts() {
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(
+                Gdx.files.internal("Intruder.ttf")
+        );
+        FreeTypeFontGenerator.FreeTypeFontParameter freeTypeFontParameter =
+                new FreeTypeFontGenerator.FreeTypeFontParameter();
+        freeTypeFontParameter.flip = true;
+
+        freeTypeFontParameter.size = 12;
+        fontGenerator.generateData(freeTypeFontParameter);
+        font12 = fontGenerator.generateFont(freeTypeFontParameter);
+
+
+        freeTypeFontParameter.size = 16;
+        fontGenerator.generateData(freeTypeFontParameter);
+        font16 = fontGenerator.generateFont(freeTypeFontParameter);
+
+
+        freeTypeFontParameter.size = 20;
+        fontGenerator.generateData(freeTypeFontParameter);
+        font20 = fontGenerator.generateFont(freeTypeFontParameter);
+
+
+        freeTypeFontParameter.size = 24;
+        fontGenerator.generateData(freeTypeFontParameter);
+        font24 = fontGenerator.generateFont(freeTypeFontParameter);
     }
 
     public void SetupCamera() {
