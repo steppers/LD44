@@ -3,6 +3,7 @@ package com.steppers.ld44;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.steppers.screens.GameScreen;
 import com.steppers.screens.SplashScreen;
 import com.steppers.ui.UIManager;
 
@@ -24,6 +25,9 @@ public class LD44Game extends ApplicationAdapter {
 		// Start the splash screen
 		uiManager.registerScreen(new SplashScreen(), "splash");
 		uiManager.setActiveScreen("splash");
+
+		// Register additional screens
+		uiManager.registerScreen(new GameScreen(), "game_screen");
 	}
 
 	@Override

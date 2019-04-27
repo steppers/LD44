@@ -12,9 +12,8 @@ public class MainMenuScreen extends UIScreen {
 
     ShapeRenderer shapeRenderer;
 
+    UIButton gameButton;
     UIButton quitButton;
-
-    UIButton button;
 
     public MainMenuScreen() {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
@@ -27,20 +26,20 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(quitButton);
 
-        button = new UIButton(50, 50, 100, 60);
-        button.setAlignment(UIElement.Alignment.ALIGN_C);
-        button.convertToPercentagePos();
-        button.setHandler(() -> {
-            UIManager.Get().transitionToScreen("splash");
+        gameButton = new UIButton(50, 50, 100, 60);
+        gameButton.setAlignment(UIElement.Alignment.ALIGN_C);
+        gameButton.convertToPercentagePos();
+        gameButton.setHandler(() -> {
+            UIManager.Get().transitionToScreen("game_screen", 0.3f);
         });
-        registerElement(button);
+        registerElement(gameButton);
     }
 
     @Override
     public void render(float opacity) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         quitButton.render(opacity);
-        button.render(opacity);
+        gameButton.render(opacity);
         shapeRenderer.end();
     }
 }

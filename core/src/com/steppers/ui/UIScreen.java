@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UIScreen {
 
-    private ArrayList<UIElement> registered = new ArrayList<UIElement>();
+    private ArrayList<UIElement> registered = new ArrayList<>();
 
     public void registerElement(UIElement element) {
         registered.add(element);

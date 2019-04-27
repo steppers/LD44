@@ -48,6 +48,7 @@ public class UIButton extends UIElement {
         } else {
             color.set(0.6f, 0.6f, 0.6f, 1.0f);
             mouseDown = false;
+            return false;
         }
 
         return true;
