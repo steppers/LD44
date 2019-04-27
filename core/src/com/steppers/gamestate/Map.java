@@ -1,5 +1,6 @@
 package com.steppers.gamestate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -10,6 +11,8 @@ public class Map {
     private HashMap<Integer, ArrayList<Integer>> connections = new HashMap<>();
     private Room entryRoom;
     private Room exitRoom;
+
+    private int currentLevel = 0;
 
     public Map(){
     }
@@ -28,7 +31,7 @@ public class Map {
         }
     }
 
-    public void generateMap(int leastRooms, int mostRooms){
+    public void generateMap(){
         Random random = new Random();
 
         this.exitRoom = new AltarRoom();
@@ -37,10 +40,7 @@ public class Map {
         this.entryRoom = new EmptyRoom();
         rooms.add(entryRoom);
 
-        int numberRooms = random.nextInt(mostRooms-leastRooms+1);
-
-
-        for(int i = 0; i < leastRooms + numberRooms; i++){
+        for(int i = 0; i < 15; i++){
             switch(random.nextInt(2)){
                 case 0: rooms.add(new EmptyRoom());
                         break;
@@ -48,6 +48,21 @@ public class Map {
                         break;
             }
         }
+    }
+
+    public ArrayList<Room> getNextLevelRooms(){
+        ArrayList<Room> nextLevel = new ArrayList<>();
+
+        if(currentLevel > 4) {
+            int nextRoomIndex = (currentLevel * 3) + 2;
+            for (int i = 0; i < 3; i++) {
+                nextLevel.add(rooms.get(nextRoomIndex + i));
+            }
+        } else {
+            nextLevel.add(exitRoom);
+        }
+
+        return nextLevel;
     }
 
 }

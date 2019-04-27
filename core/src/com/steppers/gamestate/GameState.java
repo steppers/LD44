@@ -10,7 +10,7 @@ public class GameState {
     public GameState(){
         character = new Character(startLifeBlood);
         dungeonMap = new Map();
-        dungeonMap.generateMap(1,2);
+        dungeonMap.generateMap();
         dungeonMap.addConnection(0,1);
     }
 

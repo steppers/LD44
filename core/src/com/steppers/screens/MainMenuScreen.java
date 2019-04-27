@@ -7,6 +7,7 @@ import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;
+import com.steppers.ui.UIMapDisplay;
 import com.steppers.ui.UIScreen;
 import com.steppers.ui.UITextButton;
 
@@ -37,6 +38,7 @@ public class MainMenuScreen extends UIScreen {
             UIManager.Get().transitionToScreen("game_screen", 0.3f);
         });
         registerElement(gameButton);
+
     }
 
     @Override
