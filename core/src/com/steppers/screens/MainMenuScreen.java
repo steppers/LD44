@@ -23,6 +23,7 @@ public class MainMenuScreen extends UIScreen {
     UITextButton newGameButton;
     UITextButton continueGameButton;
     UITextButton quitButton;
+    UITextButton fullsceenButton;
 
     GameState latestGameState;
 
@@ -32,7 +33,7 @@ public class MainMenuScreen extends UIScreen {
 
         latestGameState = null;
 
-        quitButton = new UITextButton(50, 41, 200, 40, "Quit");
+        quitButton = new UITextButton(50, 32, 200, 40, "Quit");
         quitButton.setAlignment(UIElement.Alignment.ALIGN_C);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {
@@ -61,6 +62,19 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(continueGameButton);
 
+        fullsceenButton = new UITextButton(50, 41, 200, 40, "Fullscreen");
+        fullsceenButton.setAlignment(UIElement.Alignment.ALIGN_C);
+        fullsceenButton.convertToPercentagePos();
+        fullsceenButton.setHandler(() -> {
+            if(Gdx.graphics.isFullscreen())
+            {
+                Gdx.graphics.setWindowedMode(910, 512);
+            } else {
+                Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode(Gdx.graphics.getMonitor()));
+            }
+        });
+        registerElement(fullsceenButton);
+
         background = Renderer.Get().GetBackgroundTexture();
     }
 
@@ -88,12 +102,14 @@ public class MainMenuScreen extends UIScreen {
         quitButton.render(opacity);
         newGameButton.render(opacity);
         continueGameButton.render(opacity);
+        fullsceenButton.render(opacity);
         shapeRenderer.end();
 
         spriteBatch.begin();
         quitButton.renderText(opacity);
         newGameButton.renderText(opacity);
         continueGameButton.renderText(opacity);
+        fullsceenButton.renderText(opacity);
         spriteBatch.end();
     }
 
@@ -102,5 +118,6 @@ public class MainMenuScreen extends UIScreen {
         quitButton.onScreenResize();
         newGameButton.onScreenResize();
         continueGameButton.onScreenResize();
+        fullsceenButton.onScreenResize();
     }
 }

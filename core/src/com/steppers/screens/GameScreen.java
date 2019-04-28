@@ -72,9 +72,9 @@ public class GameScreen extends UIScreen {
 
         bloodCircle.addFollower(BeingGenerator.generateFollower());
         bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
+//        bloodCircle.addFollower(BeingGenerator.generateFollower());
+//        bloodCircle.addFollower(BeingGenerator.generateFollower());
+//        bloodCircle.addFollower(BeingGenerator.generateFollower());
 
         spellBar = new UISpellBar(50, 0, 160 + 4 + (6*2), 32 + 2 + 4);
         spellBar.setAlignment(UIElement.Alignment.ALIGN_BC);
