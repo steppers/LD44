@@ -73,8 +73,7 @@ public class GameScreen extends UIScreen {
         mapDisplay.setAlignment(UIElement.Alignment.ALIGN_BR);
         mapDisplay.convertToPercentagePos();
         mapDisplay.initButtons();
-        for(UIButton button : mapDisplay.getButtons()){
-            //button.convertToPercentagePos();
+        for(UIButton button : mapDisplay.getButtons()) {
             registerElement(button);
         }
 

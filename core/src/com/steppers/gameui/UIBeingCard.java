@@ -46,8 +46,11 @@ public class UIBeingCard extends UIElement {
     }
 
     public void renderText(float opacity) {
-        if(being.getIcon() != null)
-            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x+5, bounds.y + bounds.height - 5 - (bounds.width-10), bounds.width-10, bounds.width-10);
+        if(being.getIcon() != null) {
+            float beingSize = bounds.width * 0.8f;
+            float xOffset = (bounds.width - beingSize)/2;
+            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x + xOffset, bounds.y + bounds.height - xOffset - beingSize, beingSize, beingSize);
+        }
 
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeBlood()));
