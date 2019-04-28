@@ -68,7 +68,7 @@ public class UIBloodCircle extends UIElement {
     }
 
     public boolean handleMouseEvent(float x, float y, MouseEvent event) {
-        if(expandedCard == null) {
+        if(expandedCard == null && expandProgress == 0.0f) {
             for (UIBeingCard card : beingCards) {
                 if (event == MouseEvent.MOUSE_UP && card.isMouseOver(x, y)) {
                     // Expand card view
@@ -85,18 +85,9 @@ public class UIBloodCircle extends UIElement {
                 expandDirection = 1;
                 return true;
             }
-        } else if(expandProgress == 1.0f){
-            for (UIBeingCard card : beingCards) {
-                if (event == MouseEvent.MOUSE_UP && card.isMouseOver(x, y)) {
-                    // Minimise card view
-                    expandedCard = card;
-                    expandDirection = -1;
-                    return true;
-                }
-            }
-            if (event == MouseEvent.MOUSE_UP && characterCard.isMouseOver(x, y)) {
+        } else if(expandProgress == 1.0f) {
+            if (event == MouseEvent.MOUSE_UP && expandedCard.isMouseOver(x, y)) {
                 // Minimise card view
-                expandedCard = characterCard;
                 expandDirection = -1;
                 return true;
             }
@@ -191,6 +182,8 @@ public class UIBloodCircle extends UIElement {
             expandedCard.moveTo(newX, newY);
             expandedCard.setAlignment(align);
             expandedCard.render(opacity);
+
+            expandedCard.setExpandProgress(expandProgress);
 
             if(expandProgress == 0.0f) {
                 expandDirection = 0;

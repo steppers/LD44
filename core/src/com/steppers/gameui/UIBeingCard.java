@@ -3,6 +3,7 @@ package com.steppers.gameui;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Align;
 import com.steppers.gamestate.Being;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIElement;
@@ -13,12 +14,15 @@ public class UIBeingCard extends UIElement {
     private SpriteBatch spriteBatch;
 
     private Being being;
+    private float expandProgress;
 
     public UIBeingCard(float x, float y, float width, float height) {
         super(x, y, width, height);
 
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
+
+        expandProgress = 0.0f;
     }
 
     public void setBeing(Being being) {
@@ -27,6 +31,11 @@ public class UIBeingCard extends UIElement {
 
     public Being getBeing() {
         return being;
+    }
+
+    public void setExpandProgress(float progress)
+    {
+        expandProgress = progress;
     }
 
     public void render(float opacity) {
@@ -46,6 +55,12 @@ public class UIBeingCard extends UIElement {
         Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity);
         Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 7);
         Renderer.Get().GetSpriteBatch().draw(Renderer.Get().GetBloodTexture(), bounds.x + (bounds.width - totalBloodWidth)/2, bounds.y + 4, Renderer.Get().GetBloodTexture().getWidth()/2, Renderer.Get().GetBloodTexture().getHeight()/2);
+
+        if(expandProgress > 0.5f && being.getName() != null) {
+            glyphLayout.setText(Renderer.Get().GetFont24(), being.getName(), Renderer.Get().GetBloodColor(), bounds.width - 6, Align.center, true);
+            Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity * ((expandProgress - 0.5f)*2));
+            Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), being.getName(), bounds.x + 3, bounds.y + bounds.height - 4, bounds.width - 6, Align.center, true);
+        }
 
         if(being.getIcon() != null)
             Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x+5, bounds.y + bounds.height - 5 - (bounds.width-10), bounds.width-10, bounds.width-10);
