@@ -13,6 +13,7 @@ public class Character extends Being {
     public Character(int lifeBlood) {
         super(lifeBlood);
         setIcon(new Texture("PixelBloodMage.png"));
+        setName("The \"Farmer\"");
     }
 
     public boolean addFollower(Follower follower){
