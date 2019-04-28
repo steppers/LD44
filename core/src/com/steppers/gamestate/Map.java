@@ -49,6 +49,10 @@ public class Map {
                         break;
                 case 1: rooms.add(new MonsterRoom(null));
                         break;
+                case 2: rooms.add(new MonsterRoom(null));
+                    break;
+                case 3: rooms.add(new FollowerRoom(null));
+                    break;
             }
         }
 
