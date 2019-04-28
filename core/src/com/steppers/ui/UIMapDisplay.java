@@ -1,11 +1,13 @@
 package com.steppers.ui;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.gamestate.Room;
 import com.steppers.ld44.Renderer;
 import com.steppers.gamestate.Map;
+import com.steppers.screens.GameScreen;
 
 import java.util.ArrayList;
 
@@ -16,20 +18,23 @@ public class UIMapDisplay extends UIElement {
     private UITextButton middleRoomButton = null;
     private UITextButton rightRoomButton = null;
 
+    GameScreen gameScreen;
     ShapeRenderer shapeRenderer;
     Map dungeonMap;
 
     boolean active = true;
 
-    public UIMapDisplay(float x, float y, float width, float height, Map dungeonMap) {
+    public UIMapDisplay(float x, float y, float width, float height, Map dungeonMap, GameScreen gameScreen) {
         super(x, y, width, height);
 
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
         this.dungeonMap = dungeonMap;
+        this.gameScreen = gameScreen;
 
         leftRoomButton = new UITextButton(x + (width/16), y - 80, 70, 70, Color.DARK_GRAY ,"1");
         leftRoomButton.setHandler(() -> {
+            gameScreen.getEnemyDisplay().reset();
             dungeonMap.nextLevel(0);
         });
 

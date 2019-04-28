@@ -48,18 +48,10 @@ public class GameScreen extends UIScreen {
         });
         registerElement(backButton);
 
-        mapDisplay = new UIMapDisplay(650, 160, 260, 180, gameState.getDungeonMap());
-        for(UIButton button : mapDisplay.getButtons()){
-            registerElement(button);
-        }
-
         background = Renderer.Get().GetBackgroundTexture();
 
         bloodBank = new UIBloodBank(0, 512, 0, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
-
-        enemyDisplay = new UIEnemyDisplay(50, 100, 220, 220, gameState);
-        enemyDisplay.convertToPercentagePos();
 
         bloodCircle = new UIBloodCircle(50, 44, 300, 300);
         bloodCircle.convertToPercentagePos();
@@ -79,6 +71,19 @@ public class GameScreen extends UIScreen {
         spellBar = new UISpellBar(50, 0, 160 + 4 + (6*2), 32 + 2 + 4);
         spellBar.setAlignment(UIElement.Alignment.ALIGN_BC);
         spellBar.convertToPercentagePos();
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+
+        enemyDisplay = new UIEnemyDisplay(50, 100, 220, 220, gameState, bloodCircle);
+        enemyDisplay.convertToPercentagePos();
+        enemyDisplay.setAlignment(UIElement.Alignment.ALIGN_C);
+        registerElement(enemyDisplay);
+
+        mapDisplay = new UIMapDisplay(650, 160, 260, 180, gameState.getDungeonMap(), this);
+        for(UIButton button : mapDisplay.getButtons()){
+            registerElement(button);
+        }
     }
 
     @Override
@@ -112,17 +117,5 @@ public class GameScreen extends UIScreen {
         bloodBank.renderText(opacity);
         bloodCircle.renderText(opacity);
         batch.end();
-    }
-
-
-
-    @Override
-    public void onScreenResize() {
-        backButton.onScreenResize();
-        bloodBank.onScreenResize();
-        mapDisplay.onScreenResize();
-        enemyDisplay.onScreenResize();
-        spellBar.onScreenResize();
-        bloodCircle.onScreenResize();
     }
 }
