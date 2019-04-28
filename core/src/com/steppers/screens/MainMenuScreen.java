@@ -43,7 +43,7 @@ public class MainMenuScreen extends UIScreen {
         newGameButton.setAlignment(UIElement.Alignment.ALIGN_C);
         newGameButton.convertToPercentagePos();
         newGameButton.setHandler(() -> {
-            latestGameState = new GameState();
+            latestGameState = GameState.New();
             UIManager.Get().unregisterScreen("game_screen");
             UIManager.Get().registerScreen(new GameScreen(latestGameState), "game_screen");
             UIManager.Get().transitionToScreen("game_screen", 0.3f);

@@ -30,6 +30,7 @@ public class Renderer {
 
     private Texture background;
     private Texture bloodTex;
+    private Texture sacrificeTex;
 
     private Color bloodColor;
 
@@ -53,6 +54,7 @@ public class Renderer {
     public Texture GetBloodTexture() {
         return bloodTex;
     }
+    public Texture GetSacrificeTexture() { return sacrificeTex; }
 
     public Color GetBloodColor() { return bloodColor; }
 
@@ -107,6 +109,7 @@ public class Renderer {
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         bloodTex = new Texture("blood_droplet.png");
+        sacrificeTex = new Texture("sacrifice.png");
     }
 
     public void dispose() {

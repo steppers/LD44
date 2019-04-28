@@ -62,6 +62,11 @@ public class UIBloodCircle extends UIElement {
             if(bc.getBeing() == follower)
             {
                 beingCards.remove(bc);
+                if(bc == expandedCard) {
+                    expandProgress = 0.0f;
+                    expandedCard = null;
+                    expandDirection = 0;
+                }
                 break;
             }
         }
@@ -86,7 +91,7 @@ public class UIBloodCircle extends UIElement {
                 return true;
             }
         } else if(expandProgress == 1.0f) {
-            if (event == MouseEvent.MOUSE_UP && expandedCard.isMouseOver(x, y)) {
+            if(!expandedCard.handleMouseEvent(x, y, event) && event == MouseEvent.MOUSE_UP && expandedCard.isMouseOver(x, y)) {
                 // Minimise card view
                 expandDirection = -1;
                 return true;
@@ -108,6 +113,7 @@ public class UIBloodCircle extends UIElement {
                 expandProgress -= 3f * dt;
                 expandProgress = Math.max(expandProgress, 0.0f);
             }
+            expandedCard.update(dt);
         }
     }
 
