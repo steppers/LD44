@@ -1,6 +1,7 @@
 package com.steppers.ld44;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,6 +31,8 @@ public class Renderer {
     private Texture background;
     private Texture bloodTex;
 
+    private Color bloodColor;
+
     public ShapeRenderer GetShapeRenderer() {
         return shapeRenderer;
     }
@@ -51,10 +54,14 @@ public class Renderer {
         return bloodTex;
     }
 
+    public Color GetBloodColor() { return bloodColor; }
+
     public void Setup() {
         SetupCamera();
         SetupFonts();
         SetupTextures();
+
+        bloodColor = new Color(0.8f, 0, 0, 1.0f);
     }
 
     private void SetupFonts() {

@@ -14,7 +14,7 @@ public class UITextButton extends UIButton {
     public UITextButton(float x, float y, float width, float height, String text) {
         super(x, y, width, height);
         this.text = text;
-        textColor = new Color(1,0,0,1);
+        textColor = new Color(Renderer.Get().GetBloodColor());
 
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), text);
@@ -24,7 +24,7 @@ public class UITextButton extends UIButton {
     public UITextButton(float x, float y, float width, float height, Color color, String text) {
         super(x, y, width, height, color);
         this.text = text;
-        textColor = new Color(1,0,0,1);
+        textColor = new Color(Renderer.Get().GetBloodColor());
 
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), text);

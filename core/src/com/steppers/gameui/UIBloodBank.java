@@ -51,7 +51,7 @@ public class UIBloodBank extends UIElement {
         glyphLayout.setText(Renderer.Get().GetFont24(), maxBlood + "/" + maxBlood);
         float textX = (1 + maxBlood * bloodTexture.getWidth() + maxBlood * 3);
 
-        Renderer.Get().GetFont24().setColor(1, 0, 0, opacity);
+        Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity);
         Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), blood + "/" + maxBlood, textX + ((bounds.width - textX) - glyphLayout.width)/2, bounds.y + 4 + ((bounds.height-3) + glyphLayout.height)/2);
     }
 

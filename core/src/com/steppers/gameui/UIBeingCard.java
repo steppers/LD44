@@ -43,8 +43,8 @@ public class UIBeingCard extends UIElement {
         float bloodTexWidth = Renderer.Get().GetBloodTexture().getWidth()/2;
         float totalBloodWidth = bloodTexWidth + 1.5f + glyphLayout.width;
 
-        Renderer.Get().GetFont24().setColor(1, 0, 0, opacity);
-        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 6);
+        Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity);
+        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 7);
         Renderer.Get().GetSpriteBatch().draw(Renderer.Get().GetBloodTexture(), bounds.x + (bounds.width - totalBloodWidth)/2, bounds.y + 4, Renderer.Get().GetBloodTexture().getWidth()/2, Renderer.Get().GetBloodTexture().getHeight()/2);
 
         if(being.getIcon() != null)

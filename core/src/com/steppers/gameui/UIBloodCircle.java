@@ -129,7 +129,7 @@ public class UIBloodCircle extends UIElement {
         shapeRenderer.setColor(0.15f, 0.15f, 0.15f, opacity * 0.6f);
         shapeRenderer.circle(bounds.x, bounds.y, bounds.height / 2);
 
-        shapeRenderer.setColor(0.9f, 0, 0, opacity);
+        shapeRenderer.setColor(0.8f, 0, 0, opacity);
 
         Vector2 v1 = new Vector2();
         Vector2 v2 = new Vector2();
