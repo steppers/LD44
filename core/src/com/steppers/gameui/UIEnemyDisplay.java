@@ -68,7 +68,7 @@ public class UIEnemyDisplay extends UIElement {
 
                 shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             } else if(gameState.getDungeonMap().getCurrentRoom().getRoomType() == 3) {
-                shapeRenderer.setColor(1, 0, 0, opacity);
+                shapeRenderer.setColor(0, 0.8f, 0, opacity);
 
                 Vector2 v1 = new Vector2();
                 Vector2 v2 = new Vector2();
