@@ -118,4 +118,8 @@ public class GameScreen extends UIScreen {
         bloodCircle.renderText(opacity);
         batch.end();
     }
+
+    public UIEnemyDisplay getEnemyDisplay(){
+        return enemyDisplay;
+    }
 }
