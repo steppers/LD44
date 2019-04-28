@@ -44,14 +44,16 @@ public class Map {
         rooms.add(entryRoom);
 
         for(int i = 0; i < 15; i++){
-            switch(random.nextInt(2)){
+            switch(random.nextInt(5)){
                 case 0: rooms.add(new EmptyRoom());
                         break;
-                case 1: rooms.add(new MonsterRoom(null));
+                case 1: rooms.add(new MonsterRoom(BeingGenerator.generateEnemy()));
                         break;
-                case 2: rooms.add(new MonsterRoom(null));
+                case 2: rooms.add(new MonsterRoom(BeingGenerator.generateEnemy()));
                     break;
-                case 3: rooms.add(new FollowerRoom(null));
+                case 3: rooms.add(new MonsterRoom(BeingGenerator.generateEnemy()));
+                    break;
+                case 4: rooms.add(new FollowerRoom(BeingGenerator.generateFollower()));
                     break;
             }
         }

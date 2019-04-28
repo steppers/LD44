@@ -127,7 +127,7 @@ public class BeingGenerator {
         return follower;
     }
 
-    public Enemy generateEnemy(){
+    public static Enemy generateEnemy(){
         Random random = new Random();
 
         int lifeBlood = random.nextInt(15) + 1;
