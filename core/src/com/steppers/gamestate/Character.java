@@ -1,5 +1,7 @@
 package com.steppers.gamestate;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import java.util.ArrayList;
 
 public class Character extends Being {
@@ -10,6 +12,7 @@ public class Character extends Being {
 
     public Character(int lifeBlood) {
         super(lifeBlood);
+        setIcon(new Texture("PixelBloodMage.png"));
     }
 
     public boolean addFollower(Follower follower){

@@ -127,5 +127,24 @@ public class BeingGenerator {
         return follower;
     }
 
+    public Enemy generateEnemy(){
+        Random random = new Random();
+
+        int lifeBlood = random.nextInt(15) + 1;
+        Enemy enemy = new Enemy(lifeBlood);
+
+        int enemyType = random.nextInt(10);
+
+        if(enemyType >= 6){
+            enemy.setIcon(new Texture("PixelMage.png"));
+            enemy.setName("Mage");
+        } else {
+            enemy.setIcon(new Texture("PixelKraken.png"));
+            enemy.setName("Kraken");
+        }
+
+        return enemy;
+    }
+
 
 }
