@@ -37,8 +37,9 @@ public class UIManager implements InputProcessor {
         screens.put(id, screen);
     }
 
-    public void unregisterScreen(UIScreen screen) {
-        screens.remove(screen);
+    public void unregisterScreen(String screenId) {
+//        if(screens.containsKey(screenId))
+            screens.remove(screenId);
     }
 
     public void setActiveScreen(String screenId) {

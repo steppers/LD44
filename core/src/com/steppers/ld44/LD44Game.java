@@ -11,12 +11,9 @@ import com.steppers.ui.UIManager;
 public class LD44Game extends ApplicationAdapter {
 
 	private UIManager uiManager;
-	GameState gameState;
 	
 	@Override
 	public void create () {
-
-		gameState = new GameState();
 
 		// Setup the camera and inputs
 		uiManager = UIManager.Get();
@@ -26,9 +23,6 @@ public class LD44Game extends ApplicationAdapter {
 		// Start the splash screen
 		uiManager.registerScreen(new SplashScreen(), "splash");
 		uiManager.setActiveScreen("splash");
-
-		// Register additional screens
-		uiManager.registerScreen(new GameScreen(gameState), "game_screen");
 	}
 
 	@Override

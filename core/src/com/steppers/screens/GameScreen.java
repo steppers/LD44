@@ -40,7 +40,7 @@ public class GameScreen extends UIScreen {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         batch = Renderer.Get().GetSpriteBatch();
 
-        backButton = new UITextButton(5, 5, 60, 50, "Back");
+        backButton = new UITextButton(5, 5, 70, 50, "Menu");
         backButton.setHandler(() -> {
             UIManager.Get().transitionToScreen("main_menu", 0.3f);
         });

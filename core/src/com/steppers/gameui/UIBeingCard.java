@@ -46,6 +46,9 @@ public class UIBeingCard extends UIElement {
     }
 
     public void renderText(float opacity) {
+        if(being.getIcon() != null)
+            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x+5, bounds.y + bounds.height - 5 - (bounds.width-10), bounds.width-10, bounds.width-10);
+
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeBlood()));
 
@@ -61,9 +64,6 @@ public class UIBeingCard extends UIElement {
             Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity * ((expandProgress - 0.5f)*2));
             Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), being.getName(), bounds.x + 3, bounds.y + bounds.height - 4, bounds.width - 6, Align.center, true);
         }
-
-        if(being.getIcon() != null)
-            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x+5, bounds.y + bounds.height - 5 - (bounds.width-10), bounds.width-10, bounds.width-10);
     }
 
 }

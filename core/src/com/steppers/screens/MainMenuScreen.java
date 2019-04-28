@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.gamestate.GameState;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
@@ -19,14 +20,19 @@ public class MainMenuScreen extends UIScreen {
 
     Texture background;
 
-    UIButton gameButton;
-    UIButton quitButton;
+    UITextButton newGameButton;
+    UITextButton continueGameButton;
+    UITextButton quitButton;
+
+    GameState latestGameState;
 
     public MainMenuScreen() {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        quitButton = new UITextButton(50, 43, 150, 40, "Quit");
+        latestGameState = null;
+
+        quitButton = new UITextButton(50, 41, 200, 40, "Quit");
         quitButton.setAlignment(UIElement.Alignment.ALIGN_C);
         quitButton.convertToPercentagePos();
         quitButton.setHandler(() -> {
@@ -34,15 +40,37 @@ public class MainMenuScreen extends UIScreen {
         });
         registerElement(quitButton);
 
-        gameButton = new UITextButton(50, 57, 150, 40, "Play Game");
-        gameButton.setAlignment(UIElement.Alignment.ALIGN_C);
-        gameButton.convertToPercentagePos();
-        gameButton.setHandler(() -> {
+        newGameButton = new UITextButton(50, 59, 200, 40, "New Game");
+        newGameButton.setAlignment(UIElement.Alignment.ALIGN_C);
+        newGameButton.convertToPercentagePos();
+        newGameButton.setHandler(() -> {
+            latestGameState = new GameState();
+            UIManager.Get().unregisterScreen("game_screen");
+            UIManager.Get().registerScreen(new GameScreen(latestGameState), "game_screen");
             UIManager.Get().transitionToScreen("game_screen", 0.3f);
         });
-        registerElement(gameButton);
+        registerElement(newGameButton);
+
+        continueGameButton = new UITextButton(50, 50, 200, 40, "Continue Game");
+        continueGameButton.setAlignment(UIElement.Alignment.ALIGN_C);
+        continueGameButton.convertToPercentagePos();
+        continueGameButton.setHandler(() -> {
+            if(latestGameState != null) {
+                UIManager.Get().transitionToScreen("game_screen", 0.3f);
+            }
+        });
+        registerElement(continueGameButton);
 
         background = Renderer.Get().GetBackgroundTexture();
+    }
+
+    @Override
+    public void update(float dt) {
+        if(latestGameState == null) {
+            continueGameButton.setTextColor(0.2f, 0, 0);
+        } else {
+            continueGameButton.setTextColor(0.8f, 0, 0);
+        }
     }
 
     @Override
@@ -58,12 +86,14 @@ public class MainMenuScreen extends UIScreen {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         quitButton.render(opacity);
-        gameButton.render(opacity);
+        newGameButton.render(opacity);
+        continueGameButton.render(opacity);
         shapeRenderer.end();
 
         spriteBatch.begin();
         quitButton.renderText(opacity);
-        gameButton.renderText(opacity);
+        newGameButton.renderText(opacity);
+        continueGameButton.renderText(opacity);
         spriteBatch.end();
     }
 }
