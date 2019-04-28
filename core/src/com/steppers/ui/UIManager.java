@@ -79,6 +79,10 @@ public class UIManager implements InputProcessor {
                 activeScreen.onTransitionedTo();
             }
         }
+
+        activeScreen.update(dt);
+        if(nextScreen != null)
+            nextScreen.update(dt);
     }
 
     public void render() {

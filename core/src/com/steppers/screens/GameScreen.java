@@ -65,12 +65,18 @@ public class GameScreen extends UIScreen {
         for(Follower f : character.getFollowers()) {
             bloodCircle.addFollower(f);
         }
+        registerElement(bloodCircle);
 
         bloodCircle.addFollower(new Follower(3));
         bloodCircle.addFollower(new Follower(5));
         bloodCircle.addFollower(new Follower(2));
         bloodCircle.addFollower(new Follower(8));
         bloodCircle.addFollower(new Follower(3));
+    }
+
+    @Override
+    public void update(float dt) {
+        bloodCircle.update(dt);
     }
 
     @Override

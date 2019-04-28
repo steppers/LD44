@@ -25,7 +25,15 @@ public class UIElement {
         alignment = Alignment.ALIGN_BL;
     }
 
-    private void resetAlignment() {
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    public void resetAlignment() {
         switch (this.alignment) {
             case ALIGN_TL:
                 bounds.y += bounds.height;
@@ -135,7 +143,12 @@ public class UIElement {
     }
 
     public void resize(float width, float height) {
+        Alignment align = this.alignment;
+        resetAlignment();
+
         bounds.setSize(width, height);
+
+        setAlignment(align);
     }
 
     public boolean isMouseOver(float x, float y) {
