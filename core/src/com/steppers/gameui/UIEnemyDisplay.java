@@ -62,7 +62,7 @@ public class UIEnemyDisplay extends UIElement {
 
                 spriteBatch.begin();
 
-                spriteBatch.draw(((MonsterRoom) gameState.getDungeonMap().getCurrentRoom()).getEnemy().getIcon(), bounds.x - 40, bounds.y - 80, 80, 80);
+                spriteBatch.draw(((MonsterRoom) gameState.getDungeonMap().getCurrentRoom()).getEnemy().getIcon(), bounds.x - 50, bounds.y - 90, 100, 100);
 
                 spriteBatch.end();
 

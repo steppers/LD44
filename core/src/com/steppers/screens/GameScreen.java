@@ -56,7 +56,7 @@ public class GameScreen extends UIScreen {
         bloodBank = new UIBloodBank(0, 512, 0, 36);
         bloodBank.setAlignment(UIElement.Alignment.ALIGN_TL);
 
-        enemyDisplay = new UIEnemyDisplay(50, 100, 200, 200, gameState);
+        enemyDisplay = new UIEnemyDisplay(50, 100, 220, 220, gameState);
         enemyDisplay.convertToPercentagePos();
 
         bloodCircle = new UIBloodCircle(50, 44, 300, 300);

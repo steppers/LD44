@@ -135,12 +135,15 @@ public class BeingGenerator {
 
         int enemyType = random.nextInt(10);
 
-        if(enemyType >= 6){
+        if(enemyType >= 7){
             enemy.setIcon(new Texture("PixelMage.png"));
             enemy.setName("Mage");
-        } else {
+        } else if (enemyType >= 4){
             enemy.setIcon(new Texture("PixelKraken.png"));
             enemy.setName("Kraken");
+        } else if (enemyType >= 0){
+            enemy.setIcon(new Texture("PixelSkeleton.png"));
+            enemy.setName("Skeleton");
         }
 
         return enemy;
