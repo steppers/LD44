@@ -89,7 +89,7 @@ public class MainMenuScreen extends UIScreen {
     public void render(float opacity) {
         spriteBatch.begin();
         spriteBatch.setColor(1,1,1, opacity);
-        spriteBatch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        spriteBatch.draw(background,0,0, 0, 0, (int)Renderer.Get().GetCamera().viewportWidth, (int)Renderer.Get().GetCamera().viewportHeight);
         spriteBatch.end();
 
         // Enable alpha blending again
