@@ -13,6 +13,7 @@ import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.gameui.UIBloodCircle;
 import com.steppers.gameui.UIEnemyDisplay;
+import com.steppers.gameui.UISpellBar;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
@@ -29,6 +30,7 @@ public class GameScreen extends UIScreen {
     UIButton backButton;
     UIBloodBank bloodBank;
     UIBloodCircle bloodCircle;
+    UISpellBar spellBar;
 
     Texture background;
 
@@ -73,6 +75,10 @@ public class GameScreen extends UIScreen {
         bloodCircle.addFollower(BeingGenerator.generateFollower());
         bloodCircle.addFollower(BeingGenerator.generateFollower());
         bloodCircle.addFollower(BeingGenerator.generateFollower());
+
+        spellBar = new UISpellBar(50, 0, 160 + 4 + (6*2), 32 + 2 + 4);
+        spellBar.setAlignment(UIElement.Alignment.ALIGN_BC);
+        spellBar.convertToPercentagePos();
     }
 
     @Override
@@ -96,6 +102,7 @@ public class GameScreen extends UIScreen {
         bloodBank.render(opacity);
         mapDisplay.render(opacity);
         enemyDisplay.render(opacity);
+        spellBar.render(opacity);
         shapeRenderer.end();
 
         bloodCircle.render(opacity);
@@ -105,5 +112,17 @@ public class GameScreen extends UIScreen {
         bloodBank.renderText(opacity);
         bloodCircle.renderText(opacity);
         batch.end();
+    }
+
+
+
+    @Override
+    public void onScreenResize() {
+        backButton.onScreenResize();
+        bloodBank.onScreenResize();
+        mapDisplay.onScreenResize();
+        enemyDisplay.onScreenResize();
+        spellBar.onScreenResize();
+        bloodCircle.onScreenResize();
     }
 }

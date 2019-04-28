@@ -177,4 +177,10 @@ public class UIManager implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
+    public void onScreenResized() {
+        for (UIScreen s : screens.values()) {
+            s.onScreenResize();
+        }
+    }
 }

@@ -91,7 +91,7 @@ public class Renderer {
         font24 = fontGenerator.generateFont(freeTypeFontParameter);
     }
 
-    private void SetupCamera() {
+    public void SetupCamera() {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         float aspect_ratio = w / h;

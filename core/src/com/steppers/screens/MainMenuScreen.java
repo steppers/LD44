@@ -96,4 +96,11 @@ public class MainMenuScreen extends UIScreen {
         continueGameButton.renderText(opacity);
         spriteBatch.end();
     }
+
+    @Override
+    public void onScreenResize() {
+        quitButton.onScreenResize();
+        newGameButton.onScreenResize();
+        continueGameButton.onScreenResize();
+    }
 }

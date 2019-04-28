@@ -30,4 +30,8 @@ public class UIScreen {
 
     }
 
+    public void onScreenResize() {
+
+    }
+
 }

@@ -7,8 +7,8 @@ import com.steppers.ld44.LD44Game;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 1280;
-		config.height = 720;
+		config.width = 910;
+		config.height = 512;
 		new LwjglApplication(new LD44Game(), config);
 	}
 }

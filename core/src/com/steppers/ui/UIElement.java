@@ -19,10 +19,16 @@ public class UIElement {
 
     protected Rectangle bounds;
     protected Alignment alignment;
+    float screenWidth, screenHeight;
+    boolean percentPos, percentSize;
 
     public UIElement(float x, float y, float width, float height) {
         bounds = new Rectangle(x, y, width, height);
         alignment = Alignment.ALIGN_BL;
+        screenWidth = 0;
+        screenHeight = 0;
+        percentPos = false;
+        percentSize = false;
     }
 
     public Rectangle getBounds() {
@@ -111,11 +117,13 @@ public class UIElement {
         Alignment align = this.alignment;
         resetAlignment();
 
-        float w = Renderer.Get().GetCamera().viewportWidth;
-        float h = Renderer.Get().GetCamera().viewportHeight;
+        screenWidth = Renderer.Get().GetCamera().viewportWidth;
+        screenHeight = Renderer.Get().GetCamera().viewportHeight;
 
-        bounds.setX(bounds.x * (w / 100.0f));
-        bounds.setY(bounds.y * (h / 100.0f));
+        bounds.setX(bounds.x * (screenWidth / 100.0f));
+        bounds.setY(bounds.y * (screenHeight / 100.0f));
+
+        percentPos = true;
 
         setAlignment(align);
     }
@@ -124,11 +132,13 @@ public class UIElement {
         Alignment align = this.alignment;
         resetAlignment();
 
-        float w = Renderer.Get().GetCamera().viewportWidth;
-        float h = Renderer.Get().GetCamera().viewportHeight;
+        screenWidth = Renderer.Get().GetCamera().viewportWidth;
+        screenHeight = Renderer.Get().GetCamera().viewportHeight;
 
-        bounds.setWidth(bounds.width * (w / 100.0f));
-        bounds.setHeight(bounds.height * (h / 100.0f));
+        bounds.setWidth(bounds.width * (screenWidth / 100.0f));
+        bounds.setHeight(bounds.height * (screenHeight / 100.0f));
+
+        percentSize = true;
 
         setAlignment(align);
     }
@@ -147,6 +157,30 @@ public class UIElement {
         resetAlignment();
 
         bounds.setSize(width, height);
+
+        setAlignment(align);
+    }
+
+    public void onScreenResize() {
+        Alignment align = this.alignment;
+        resetAlignment();
+
+        if(percentPos) {
+            bounds.x = (bounds.x / screenWidth) * 100;
+            bounds.y = (bounds.y / screenHeight) * 100;
+        }
+
+        if(percentSize) {
+            bounds.width = bounds.width / screenWidth;
+            bounds.height = bounds.width / screenHeight;
+            convertToPercentageSize();
+        }
+
+        if(percentPos)
+            convertToPercentagePos();
+
+        screenWidth = Renderer.Get().GetCamera().viewportWidth;
+        screenHeight = Renderer.Get().GetCamera().viewportHeight;
 
         setAlignment(align);
     }

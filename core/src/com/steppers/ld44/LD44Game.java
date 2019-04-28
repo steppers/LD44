@@ -46,4 +46,10 @@ public class LD44Game extends ApplicationAdapter {
 	public void dispose () {
 		Renderer.Get().dispose();
 	}
+
+	@Override
+	public void resize(int width, int height) {
+		Renderer.Get().SetupCamera();
+		uiManager.onScreenResized();
+	}
 }
