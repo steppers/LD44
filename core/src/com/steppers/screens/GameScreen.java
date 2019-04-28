@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.steppers.gamestate.BeingGenerator;
 import com.steppers.gamestate.Character;
 import com.steppers.gamestate.Follower;
 import com.steppers.gamestate.GameState;
@@ -67,11 +68,11 @@ public class GameScreen extends UIScreen {
         }
         registerElement(bloodCircle);
 
-        bloodCircle.addFollower(new Follower(3));
-        bloodCircle.addFollower(new Follower(5));
-        bloodCircle.addFollower(new Follower(2));
-        bloodCircle.addFollower(new Follower(8));
-        bloodCircle.addFollower(new Follower(3));
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
     }
 
     @Override

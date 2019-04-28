@@ -43,14 +43,14 @@ public class UIBloodCircle extends UIElement {
 
     public void setCharacter(Character character) {
         bloodSources.add(character);
-        characterCard = new UIBeingCard(bounds.x,bounds.y,45,45);
+        characterCard = new UIBeingCard(bounds.x,bounds.y,48,65);
         characterCard.setAlignment(Alignment.ALIGN_C);
         characterCard.setBeing(character);
     }
 
     public void addFollower(Follower follower) {
         bloodSources.add(follower);
-        UIBeingCard card = new UIBeingCard(0,0,45,45);
+        UIBeingCard card = new UIBeingCard(0,0,48,65);
         card.setAlignment(Alignment.ALIGN_C);
         card.setBeing(follower);
         beingCards.add(card);
@@ -139,7 +139,7 @@ public class UIBloodCircle extends UIElement {
             v1.setAngle(i * (360.0f / beingCards.size()) - 90);
             v1.add(bounds.x, bounds.y);
             beingCards.get(i).moveTo(v1.x, v1.y);
-            beingCards.get(i).resize(45, 45);
+            beingCards.get(i).resize(48, 65);
 
             for(int j = i; j < beingCards.size(); ++j)
             {
@@ -159,7 +159,7 @@ public class UIBloodCircle extends UIElement {
             characterCard.render(opacity);
 
         characterCard.moveTo(bounds.x, bounds.y);
-        characterCard.resize(45, 45);
+        characterCard.resize(48, 65);
 
         shapeRenderer.end();
     }
@@ -180,13 +180,14 @@ public class UIBloodCircle extends UIElement {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         if(expandedCard != null)
         {
-            float newSize = 45 + (bounds.height) * expandProgress;
+            float newWidth = 48 + (bounds.height) * expandProgress;
+            float newHeight = 65 + (bounds.height) * expandProgress;
             Alignment align = expandedCard.getAlignment();
             expandedCard.resetAlignment();
             Rectangle cardBounds = expandedCard.getBounds();
             float newX = cardBounds.x + (bounds.x - cardBounds.x) * expandProgress;
             float newY = cardBounds.y + (bounds.y - cardBounds.y) * expandProgress;
-            expandedCard.resize(newSize, newSize);
+            expandedCard.resize(newWidth, newHeight);
             expandedCard.moveTo(newX, newY);
             expandedCard.setAlignment(align);
             expandedCard.render(opacity);

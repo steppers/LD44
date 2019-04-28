@@ -28,6 +28,7 @@ public class Renderer {
     private BitmapFont font24;
 
     private Texture background;
+    private Texture bloodTex;
 
     public ShapeRenderer GetShapeRenderer() {
         return shapeRenderer;
@@ -45,6 +46,9 @@ public class Renderer {
 
     public Texture GetBackgroundTexture() {
         return background;
+    }
+    public Texture GetBloodTexture() {
+        return bloodTex;
     }
 
     public void Setup() {
@@ -94,6 +98,8 @@ public class Renderer {
     private void SetupTextures() {
         background = new Texture("StoneWallTileableSmall.png");
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+
+        bloodTex = new Texture("blood_droplet.png");
     }
 
     public void dispose() {

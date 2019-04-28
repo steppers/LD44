@@ -21,7 +21,7 @@ public class UIBloodBank extends UIElement {
         shapeRenderer = Renderer.Get().GetShapeRenderer();
         spriteBatch = Renderer.Get().GetSpriteBatch();
 
-        bloodTexture = new Texture("blood_droplet.png");
+        bloodTexture = Renderer.Get().GetBloodTexture();
 
         blood = 0;
         maxBlood = 10;

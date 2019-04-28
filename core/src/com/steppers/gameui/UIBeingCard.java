@@ -40,8 +40,15 @@ public class UIBeingCard extends UIElement {
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeBlood()));
 
+        float bloodTexWidth = Renderer.Get().GetBloodTexture().getWidth()/2;
+        float totalBloodWidth = bloodTexWidth + 1.5f + glyphLayout.width;
+
         Renderer.Get().GetFont24().setColor(1, 0, 0, opacity);
-        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - glyphLayout.width)/2, bounds.y + (bounds.height + glyphLayout.height)/2);
+        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 6);
+        Renderer.Get().GetSpriteBatch().draw(Renderer.Get().GetBloodTexture(), bounds.x + (bounds.width - totalBloodWidth)/2, bounds.y + 4, Renderer.Get().GetBloodTexture().getWidth()/2, Renderer.Get().GetBloodTexture().getHeight()/2);
+
+        if(being.getIcon() != null)
+            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x+5, bounds.y + bounds.height - 5 - (bounds.width-10), bounds.width-10, bounds.width-10);
     }
 
 }
