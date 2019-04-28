@@ -60,6 +60,9 @@ public class UIManager implements InputProcessor {
     public UIScreen getScreen(String screenId) {
         return screens.get(screenId);
     }
+    public UIScreen getActiveScreen() {
+        return activeScreen;
+    }
 
     public void update(float dt) {
         if(nextScreen != null)

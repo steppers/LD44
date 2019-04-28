@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.steppers.gamestate.BeingGenerator;
 import com.steppers.gamestate.Character;
 import com.steppers.gamestate.Follower;
 import com.steppers.gamestate.GameState;
@@ -76,11 +75,18 @@ public class GameScreen extends UIScreen {
         for(UIButton button : mapDisplay.getButtons()) {
             registerElement(button);
         }
+    }
 
-        // Add initial followers
-        bloodCircle.addFollower(BeingGenerator.generateFollower(2));
-        bloodCircle.addFollower(BeingGenerator.generateFollower(3));
-        bloodCircle.addFollower(BeingGenerator.generateFollower(2));
+    public UIBloodBank getBloodBank() {
+        return bloodBank;
+    }
+
+    public UIBloodCircle getBloodCircle() {
+        return bloodCircle;
+    }
+
+    public UISpellBar getSpellBar() {
+        return spellBar;
     }
 
     @Override

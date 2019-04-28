@@ -14,6 +14,11 @@ public class Character extends Being {
         super(lifeBlood);
         setIcon(new Texture("PixelBloodMage.png"));
         setName("The \"Farmer\"");
+
+        // Initial Followers
+        addFollower(BeingGenerator.generateFollower(2));
+        addFollower(BeingGenerator.generateFollower(3));
+        addFollower(BeingGenerator.generateFollower(2));
     }
 
     public boolean addFollower(Follower follower){

@@ -7,7 +7,16 @@ public class GameState {
 
     final int startLifeBlood = 100;
 
-    public GameState(){
+    private static GameState ins = new GameState();
+    public static GameState Get() {
+        return ins;
+    }
+    public static GameState New() {
+        ins = new GameState();
+        return ins;
+    }
+
+    private GameState(){
         character = new Character(startLifeBlood);
         dungeonMap = new Map();
         dungeonMap.generateMap();
