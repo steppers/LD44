@@ -62,18 +62,9 @@ public class GameScreen extends UIScreen {
         }
         registerElement(bloodCircle);
 
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-//        bloodCircle.addFollower(BeingGenerator.generateFollower());
-//        bloodCircle.addFollower(BeingGenerator.generateFollower());
-//        bloodCircle.addFollower(BeingGenerator.generateFollower());
-
         spellBar = new UISpellBar(50, 0, 160 + 4 + (6*2), 32 + 2 + 4);
         spellBar.setAlignment(UIElement.Alignment.ALIGN_BC);
         spellBar.convertToPercentagePos();
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
 
         enemyDisplay = new UIEnemyDisplay(50, 100, 220, 220, gameState, bloodCircle);
         enemyDisplay.convertToPercentagePos();
@@ -88,6 +79,11 @@ public class GameScreen extends UIScreen {
             //button.convertToPercentagePos();
             registerElement(button);
         }
+
+        // Add initial followers
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower());
     }
 
     @Override
