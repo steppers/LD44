@@ -80,8 +80,12 @@ public class GameScreen extends UIScreen {
         enemyDisplay.setAlignment(UIElement.Alignment.ALIGN_C);
         registerElement(enemyDisplay);
 
-        mapDisplay = new UIMapDisplay(650, 160, 260, 180, gameState.getDungeonMap(), this);
+        mapDisplay = new UIMapDisplay(99, 0, 260, 180, gameState.getDungeonMap(), this);
+        mapDisplay.setAlignment(UIElement.Alignment.ALIGN_BR);
+        mapDisplay.convertToPercentagePos();
+        mapDisplay.initButtons();
         for(UIButton button : mapDisplay.getButtons()){
+            //button.convertToPercentagePos();
             registerElement(button);
         }
     }
@@ -121,5 +125,22 @@ public class GameScreen extends UIScreen {
 
     public UIEnemyDisplay getEnemyDisplay(){
         return enemyDisplay;
+    }
+
+    @Override
+    public void onScreenResize() {
+        backButton.onScreenResize();
+        bloodBank.onScreenResize();
+        mapDisplay.onScreenResize();
+        for(UIButton button : mapDisplay.getButtons()){
+            unregisterElement(button);
+        }
+        mapDisplay.initButtons();
+        for(UIButton button : mapDisplay.getButtons()){
+            registerElement(button);
+        }
+        enemyDisplay.onScreenResize();
+        spellBar.onScreenResize();
+        bloodCircle.onScreenResize();
     }
 }

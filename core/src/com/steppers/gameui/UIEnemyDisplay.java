@@ -1,6 +1,7 @@
 package com.steppers.gameui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -22,6 +23,8 @@ public class UIEnemyDisplay extends UIElement {
     boolean empty = false;
 
     int offset = 0;
+    float colorOffset = 0;
+    float colorMultiplier = 0;
 
     public UIEnemyDisplay(float x, float y, float width, float height, GameState gameState, UIBloodCircle bloodCircle) {
         super(x, y, width, height);
@@ -58,7 +61,7 @@ public class UIEnemyDisplay extends UIElement {
     }
 
     public void render(float opacity) {
-        if(gameState.getDungeonMap().getCurrentRoom().getRoomType() >= 1) {
+        if(gameState.getDungeonMap().getCurrentRoom().getRoomType() >= 0) {
             if(gameState.getDungeonMap().getCurrentRoom().getRoomType() == 2) {
                 shapeRenderer.setColor(1, 0, 0, opacity);
 
@@ -161,6 +164,49 @@ public class UIEnemyDisplay extends UIElement {
                 shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
                 shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f);
 
+            } else if(gameState.getDungeonMap().getCurrentRoom().getRoomType() == 0) {
+                shapeRenderer.setColor(0.6f + (float) (Math.sin(colorOffset))*0.4f, 0f, 0, opacity);
+
+                Vector2 v1 = new Vector2();
+                Vector2 v2 = new Vector2();
+                for (int i = 0; i < 5; ++i) {
+                    v1.set(0, bounds.height / 2);
+                    v1.setAngle(i * (360.0f / 5) + 54 + offset);
+                    v1.add(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+                    for (int j = i; j < 5; ++j) {
+                        v2.set(0, bounds.height / 2);
+                        v2.setAngle(j * (360.0f / 5) + 54 + offset);
+                        v2.add(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+                        shapeRenderer.rectLine(v1, v2, 3);
+                    }
+                }
+
+                colorOffset += 0.03f;
+
+                offset++;
+                if (offset > 360) {
+                    offset = 0;
+                }
+
+                shapeRenderer.setColor(new Color(0.15f, 0.15f, 0.15f, 1f));
+                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.4f);
+
+                shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
+                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.5f);
+
+                shapeRenderer.end();
+
+                if (!empty) {
+
+                    spriteBatch.begin();
+
+                    spriteBatch.draw(new Texture("PixelAltar.png"), bounds.x - 55 + bounds.width / 2, bounds.y - 100 + bounds.height / 2, 110, 110);
+
+                    spriteBatch.end();
+
+                }
+
+                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             }
         }
     }
