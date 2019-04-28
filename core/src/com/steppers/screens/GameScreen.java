@@ -83,7 +83,7 @@ public class GameScreen extends UIScreen {
     public void render(float opacity) {
         batch.begin();
         batch.setColor(1,1,1, opacity);
-        batch.draw(background,0,0, 0, 0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        batch.draw(background,0,0, 0, 0, (int)Renderer.Get().GetCamera().viewportWidth, (int)Renderer.Get().GetCamera().viewportHeight);
         batch.end();
 
         // Enable alpha blending again
