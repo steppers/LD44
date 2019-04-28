@@ -1,4 +1,4 @@
-package com.steppers.ui;
+package com.steppers.gameui;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
@@ -8,6 +8,9 @@ import com.steppers.gamestate.Room;
 import com.steppers.ld44.Renderer;
 import com.steppers.gamestate.Map;
 import com.steppers.screens.GameScreen;
+import com.steppers.ui.UIButton;
+import com.steppers.ui.UIElement;
+import com.steppers.ui.UITextButton;
 
 import java.util.ArrayList;
 
@@ -63,6 +66,7 @@ public class UIMapDisplay extends UIElement {
         });
     }
 
+    @Override
     public void render(float opacity) {
         if(active) {
             shapeRenderer.setColor(Color.DARK_GRAY);

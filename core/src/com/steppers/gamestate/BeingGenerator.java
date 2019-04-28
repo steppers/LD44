@@ -6,20 +6,52 @@ import java.util.Random;
 
 public class BeingGenerator {
 
-    public static Follower generateFollower(){
-        Random random = new Random();
-        int lifeblood = random.nextInt(8) + 1;
+    private static Random rand = new Random();
 
+    public static Follower generateFollower() {
+        return generateFollower(rand.nextInt(8) + 1);
+    }
+
+    public static Follower generateFollower(int lifeblood){
         Follower follower = new Follower(lifeblood);
 
-        String[] names = {"Terry", "Jerry", "Jim", "Charles", "Oliver", "Thomas", "Ruth", "Gabriel", "Albert", "David", "Niamh", "Melissa", "Reuben", "Edward", "Omar", "Lola", "Hayley", "Rosa", "Keith", "Rosie", "Ashanti", "Felicia", "Lauren", "Kenneth", "Toby", "Manuel", "Jonathan", "Nellie"};
+        String[] names = {
+                "Terry",
+                "Jerry",
+                "Jim",
+                "Charles",
+                "Oliver",
+                "Thomas",
+                "Ruth",
+                "Gabriel",
+                "Albert",
+                "David",
+                "Niamh",
+                "Melissa",
+                "Reuben",
+                "Edward",
+                "Omar",
+                "Lola",
+                "Hayley",
+                "Rosa",
+                "Keith",
+                "Rosie",
+                "Ashanti",
+                "Felicia",
+                "Lauren",
+                "Kenneth",
+                "Toby",
+                "Manuel",
+                "Jonathan",
+                "Nellie"
+        };
 
         String modifier = "";
         String animal = "";
 
         if(lifeblood >= 7){
             if(lifeblood == 8){
-                switch(random.nextInt(4)){
+                switch(rand.nextInt(4)){
                     case 0: modifier = "Brawny";
                         break;
                     case 1: modifier = "Stubborn";
@@ -30,7 +62,7 @@ public class BeingGenerator {
                         break;
                 }
             }
-            switch(random.nextInt(2)){
+            switch(rand.nextInt(2)){
                 case 0: follower.setIcon(new Texture("PixelHorse.png"));
                         animal = "Horse";
                         break;
@@ -41,7 +73,7 @@ public class BeingGenerator {
         } else if (lifeblood >= 4){
 
             if(lifeblood >= 5){
-                switch(random.nextInt(4)){
+                switch(rand.nextInt(4)){
                     case 0: modifier = "Derpy";
                         break;
                     case 1: modifier = "Dumb";
@@ -53,7 +85,7 @@ public class BeingGenerator {
                 }
             }
             if(lifeblood == 4){
-                switch(random.nextInt(4)){
+                switch(rand.nextInt(4)){
                     case 0: modifier = "Acrobatic";
                         break;
                     case 1: modifier = "Worried";
@@ -64,7 +96,7 @@ public class BeingGenerator {
                         break;
                 }
             }
-            switch(random.nextInt(4)){
+            switch(rand.nextInt(4)){
                 case 0: follower.setIcon(new Texture("PixelHorse.png"));
                         animal = "Horse";
                         break;
@@ -81,7 +113,7 @@ public class BeingGenerator {
 
         } else {
             if(lifeblood == 1){
-                switch(random.nextInt(4)){
+                switch(rand.nextInt(4)){
                     case 0: modifier = "Pathetic";
                         break;
                     case 1: modifier = "Tiny";
@@ -93,7 +125,7 @@ public class BeingGenerator {
                 }
             }
             if(lifeblood >= 2){
-                switch(random.nextInt(4)){
+                switch(rand.nextInt(4)){
                     case 0: modifier = "Two-faced";
                         break;
                     case 1: modifier = "Disgusting";
@@ -105,7 +137,7 @@ public class BeingGenerator {
                 }
             }
 
-            switch(random.nextInt(4)){
+            switch(rand.nextInt(4)){
                 case 0: follower.setIcon(new Texture("PixelSheep.png"));
                     animal = "Sheep";
                     break;
@@ -120,7 +152,7 @@ public class BeingGenerator {
                     break;
         }}
 
-        String name = names[random.nextInt(names.length)];
+        String name = names[rand.nextInt(names.length)];
 
         follower.setName(name + " The " + modifier + " " + animal);
 

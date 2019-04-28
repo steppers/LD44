@@ -1,7 +1,6 @@
 package com.steppers.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -9,7 +8,6 @@ import com.steppers.gamestate.BeingGenerator;
 import com.steppers.gamestate.Character;
 import com.steppers.gamestate.Follower;
 import com.steppers.gamestate.GameState;
-import com.steppers.gamestate.Map;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.gameui.UIBloodCircle;
 import com.steppers.gameui.UIEnemyDisplay;
@@ -18,7 +16,7 @@ import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;
-import com.steppers.ui.UIMapDisplay;
+import com.steppers.gameui.UIMapDisplay;
 import com.steppers.ui.UIScreen;
 import com.steppers.ui.UITextButton;
 
@@ -81,9 +79,9 @@ public class GameScreen extends UIScreen {
         }
 
         // Add initial followers
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
-        bloodCircle.addFollower(BeingGenerator.generateFollower());
+        bloodCircle.addFollower(BeingGenerator.generateFollower(2));
+        bloodCircle.addFollower(BeingGenerator.generateFollower(3));
+        bloodCircle.addFollower(BeingGenerator.generateFollower(2));
     }
 
     @Override
