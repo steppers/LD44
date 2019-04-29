@@ -1,8 +1,7 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -65,19 +64,19 @@ public class Map {
                         room1.setSymbol(roomTextures[0]);
                         rooms.add(room1);
                         break;
-                case 1: MonsterRoom room2 = new MonsterRoom(BeingGenerator.generateEnemy());
+                case 1: MonsterRoom room2 = new MonsterRoom((Enemy)Being.GenerateRandomBeing(true));
                         room2.setSymbol(roomTextures[1]);
                         rooms.add(room2);
                         break;
-                case 2: MonsterRoom room3 = new MonsterRoom(BeingGenerator.generateEnemy());
+                case 2: MonsterRoom room3 = new MonsterRoom((Enemy)Being.GenerateRandomBeing(true));
                         room3.setSymbol(roomTextures[2]);
                         rooms.add(room3);
                         break;
-                case 3: MonsterRoom room4 = new MonsterRoom(BeingGenerator.generateEnemy());
+                case 3: MonsterRoom room4 = new MonsterRoom((Enemy)Being.GenerateRandomBeing(true));
                         room4.setSymbol(roomTextures[3]);
                         rooms.add(room4);
                         break;
-                case 4: FollowerRoom room5 = new FollowerRoom(BeingGenerator.generateFollower());
+                case 4: FollowerRoom room5 = new FollowerRoom(Being.GenerateRandomBeing(false));
                         room5.setSymbol(roomTextures[4]);
                         rooms.add(room5);
                         break;

@@ -4,14 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.steppers.gamestate.Character;
-import com.steppers.gamestate.Follower;
-import com.steppers.gamestate.GameState;
+import com.steppers.state.GameState;
 import com.steppers.gameui.UIBloodBank;
 import com.steppers.gameui.UIBloodCircle;
 import com.steppers.gameui.UIEnemyDisplay;
 import com.steppers.gameui.UISpellBar;
 import com.steppers.ld44.Renderer;
+import com.steppers.state.Being;
+import com.steppers.state.Character;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;
@@ -54,7 +54,7 @@ public class GameScreen extends UIScreen {
         bloodCircle.convertToPercentagePos();
         Character character = gameState.getCharacter();
         bloodCircle.setCharacter(character);
-        for(Follower f : character.getFollowers()) {
+        for(Being f : character.getFollowers()) {
             bloodCircle.addFollower(f);
         }
         registerElement(bloodCircle);

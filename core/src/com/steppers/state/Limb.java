@@ -1,4 +1,4 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 import java.util.ArrayList;
 

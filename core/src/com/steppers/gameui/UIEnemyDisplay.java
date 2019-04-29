@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.steppers.gamestate.FollowerRoom;
-import com.steppers.gamestate.GameState;
-import com.steppers.gamestate.Map;
-import com.steppers.gamestate.MonsterRoom;
+import com.steppers.state.FollowerRoom;
+import com.steppers.state.GameState;
+import com.steppers.state.MonsterRoom;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.MouseEvent;
 import com.steppers.ui.UIElement;
@@ -94,7 +93,7 @@ public class UIEnemyDisplay extends UIElement {
 
                 spriteBatch.begin();
 
-                spriteBatch.draw(((MonsterRoom) gameState.getDungeonMap().getCurrentRoom()).getEnemy().getIcon(), bounds.x - 50 + + bounds.width/2, bounds.y - 90 + bounds.height/2, 100, 100);
+                spriteBatch.draw(((MonsterRoom) gameState.getDungeonMap().getCurrentRoom()).getEnemy().getType().getIcon(), bounds.x - 50 + + bounds.width/2, bounds.y - 90 + bounds.height/2, 100, 100);
 
                 spriteBatch.end();
 
@@ -133,7 +132,7 @@ public class UIEnemyDisplay extends UIElement {
 
                     spriteBatch.begin();
 
-                    spriteBatch.draw(((FollowerRoom) gameState.getDungeonMap().getCurrentRoom()).getFollower().getIcon(), bounds.x - 40 + bounds.width/2, bounds.y - 80 + bounds.height/2, 80, 80);
+                    spriteBatch.draw(((FollowerRoom) gameState.getDungeonMap().getCurrentRoom()).getFollower().getType().getIcon(), bounds.x - 40 + bounds.width/2, bounds.y - 80 + bounds.height/2, 80, 80);
 
                     spriteBatch.end();
 

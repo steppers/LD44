@@ -4,9 +4,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Align;
-import com.steppers.gamestate.Being;
-import com.steppers.gamestate.Follower;
-import com.steppers.gamestate.GameState;
+import com.steppers.state.Being;
+import com.steppers.state.GameState;
 import com.steppers.ld44.Renderer;
 import com.steppers.screens.GameScreen;
 import com.steppers.ui.MouseEvent;
@@ -41,8 +40,8 @@ public class UIBeingCard extends UIElement {
                 screen.getBloodBank().addBlood(10);
                 UIManager.Get().transitionToScreen("blood", 0.15f);
             } else {
-                screen.getBloodBank().addBlood(being.getLifeBlood());
-                screen.getBloodCircle().removeFollower((Follower) being);
+                screen.getBloodBank().addBlood(being.getLifeblood());
+                screen.getBloodCircle().removeFollower(being);
                 UIManager.Get().transitionToScreen("blood", 0.15f);
             }
         });
@@ -78,20 +77,20 @@ public class UIBeingCard extends UIElement {
     }
 
     public void renderText(float opacity) {
-        if(being.getIcon() != null) {
+        if(being.getType().getIcon() != null) {
             float beingSize = bounds.width * 0.8f;
             float xOffset = (bounds.width - beingSize)/2;
-            Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x + xOffset, bounds.y + bounds.height - xOffset - beingSize, beingSize, beingSize);
+            Renderer.Get().GetSpriteBatch().draw(being.getType().getIcon(), bounds.x + xOffset, bounds.y + bounds.height - xOffset - beingSize, beingSize, beingSize);
         }
 
         GlyphLayout glyphLayout = Renderer.Get().GetGlyphLayout();
-        glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeBlood()));
+        glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeblood()));
 
         float bloodTexWidth = Renderer.Get().GetBloodTexture().getWidth()/2;
         float totalBloodWidth = bloodTexWidth + 1.5f + glyphLayout.width;
 
         Renderer.Get().GetFont24().setColor(0.8f, 0, 0, opacity);
-        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeBlood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 7);
+        Renderer.Get().GetFont24().draw(Renderer.Get().GetSpriteBatch(), Integer.toString(being.getLifeblood()), bounds.x + (bounds.width - totalBloodWidth)/2 + bloodTexWidth + 1.5f, bounds.y + glyphLayout.height + 7);
         Renderer.Get().GetSpriteBatch().draw(Renderer.Get().GetBloodTexture(), bounds.x + (bounds.width - totalBloodWidth)/2, bounds.y + 4, Renderer.Get().GetBloodTexture().getWidth()/2, Renderer.Get().GetBloodTexture().getHeight()/2);
 
         if(expandProgress > 0.5f) {

@@ -1,4 +1,4 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 public class AltarRoom extends Room {
 

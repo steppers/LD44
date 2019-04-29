@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.util.HashMap;
+
 public class Renderer {
 
     // Singleton
@@ -35,6 +37,7 @@ public class Renderer {
     private Texture bloodTex;
     private Texture sacrificeTex;
     private Texture bloodOverlayTex;
+    private HashMap<String, Texture> textures;
 
     private Color bloodColor;
 
@@ -62,6 +65,7 @@ public class Renderer {
     }
     public Texture GetSacrificeTexture() { return sacrificeTex; }
     public Texture GetBloodOverlayTexture() { return bloodOverlayTex; }
+    public Texture GetTexture(String id) { return textures.get(id); }
 
     public Color GetBloodColor() { return bloodColor; }
 
@@ -117,12 +121,25 @@ public class Renderer {
     }
 
     private void SetupTextures() {
+        textures = new HashMap<>();
+
         background = new Texture("StoneWallTileableSmall.png");
         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         bloodTex = new Texture("blood_droplet.png");
         sacrificeTex = new Texture("sacrifice.png");
         bloodOverlayTex = new Texture("blood_overlay.png");
+
+        textures.put("being_horse", new Texture("PixelHorse.png"));
+        textures.put("being_cow", new Texture("PixelCow.png"));
+        textures.put("being_sheep", new Texture("PixelSheep.png"));
+        textures.put("being_owl", new Texture("PixelOwl.png"));
+        textures.put("being_chicken", new Texture("PixelChicken.png"));
+
+        textures.put("being_blood_mage", new Texture("PixelBloodMage.png"));
+        textures.put("being_mage", new Texture("PixelMage.png"));
+        textures.put("being_kraken", new Texture("PixelKraken.png"));
+        textures.put("being_skeleton", new Texture("PixelSkeleton.png"));
     }
 
     public void dispose() {

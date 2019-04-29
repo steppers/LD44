@@ -1,11 +1,9 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 public class GameState {
 
     Character character;
     Map dungeonMap;
-
-    final int startLifeBlood = 100;
 
     private static GameState ins = new GameState();
     public static GameState Get() {
@@ -17,7 +15,7 @@ public class GameState {
     }
 
     private GameState(){
-        character = new Character(startLifeBlood);
+        character = new Character();
         dungeonMap = new Map();
         dungeonMap.generateMap();
     }
@@ -29,4 +27,5 @@ public class GameState {
     public Character getCharacter(){
         return character;
     }
+
 }

@@ -1,15 +1,15 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 public class FollowerRoom extends Room {
 
-        private Follower follower;
+        private Being follower;
 
-        public FollowerRoom(Follower follower){
+        public FollowerRoom(Being follower){
             this.follower = follower;
             this.roomType = 3;
         }
 
-        public Follower getFollower(){
+        public Being getFollower(){
             return follower;
         }
 

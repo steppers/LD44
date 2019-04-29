@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.steppers.gamestate.GameState;
+import com.steppers.state.GameState;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.UIElement;
 import com.steppers.ui.UIManager;

@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.steppers.gamestate.Being;
-import com.steppers.gamestate.Character;
-import com.steppers.gamestate.Follower;
+import com.steppers.state.Being;
+import com.steppers.state.Character;
 import com.steppers.ld44.Renderer;
 import com.steppers.ui.MouseEvent;
 import com.steppers.ui.UIElement;
@@ -48,7 +47,7 @@ public class UIBloodCircle extends UIElement {
         characterCard.setBeing(character);
     }
 
-    public void addFollower(Follower follower) {
+    public void addFollower(Being follower) {
         bloodSources.add(follower);
         UIBeingCard card = new UIBeingCard(0,0,48,65);
         card.setAlignment(Alignment.ALIGN_C);
@@ -56,7 +55,7 @@ public class UIBloodCircle extends UIElement {
         beingCards.add(card);
     }
 
-    public void removeFollower(Follower follower) {
+    public void removeFollower(Being follower) {
         bloodSources.remove(follower);
         for (UIBeingCard bc : beingCards) {
             if(bc.getBeing() == follower)

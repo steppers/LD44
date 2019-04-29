@@ -1,12 +1,11 @@
 package com.steppers.gameui;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.steppers.gamestate.Room;
+import com.steppers.state.Room;
 import com.steppers.ld44.Renderer;
-import com.steppers.gamestate.Map;
+import com.steppers.state.Map;
 import com.steppers.screens.GameScreen;
 import com.steppers.ui.UIButton;
 import com.steppers.ui.UIElement;

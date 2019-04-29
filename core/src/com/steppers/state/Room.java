@@ -1,4 +1,4 @@
-package com.steppers.gamestate;
+package com.steppers.state;
 
 import com.badlogic.gdx.graphics.Texture;
 
@@ -36,6 +36,5 @@ public class Room {
     public Texture getSymbol(){
         return symbol;
     }
-
 
 }
