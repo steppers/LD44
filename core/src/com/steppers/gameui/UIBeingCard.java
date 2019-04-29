@@ -84,7 +84,7 @@ public class UIBeingCard extends UIElement {
             Renderer.Get().GetSpriteBatch().draw(being.getIcon(), bounds.x + xOffset, bounds.y + bounds.height - xOffset - beingSize, beingSize, beingSize);
         }
 
-        GlyphLayout glyphLayout = new GlyphLayout();
+        GlyphLayout glyphLayout = Renderer.Get().GetGlyphLayout();
         glyphLayout.setText(Renderer.Get().GetFont24(), Integer.toString(being.getLifeBlood()));
 
         float bloodTexWidth = Renderer.Get().GetBloodTexture().getWidth()/2;
