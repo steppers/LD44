@@ -35,7 +35,6 @@ public class Renderer {
     private Texture bloodTex;
     private Texture sacrificeTex;
     private Texture bloodOverlayTex;
-    private Texture titleTex;
 
     private Color bloodColor;
 
@@ -63,7 +62,6 @@ public class Renderer {
     }
     public Texture GetSacrificeTexture() { return sacrificeTex; }
     public Texture GetBloodOverlayTexture() { return bloodOverlayTex; }
-    public Texture GetTitleTexture() { return titleTex; }
 
     public Color GetBloodColor() { return bloodColor; }
 
@@ -125,7 +123,6 @@ public class Renderer {
         bloodTex = new Texture("blood_droplet.png");
         sacrificeTex = new Texture("sacrifice.png");
         bloodOverlayTex = new Texture("blood_overlay.png");
-        titleTex = new Texture("title.png");
     }
 
     public void dispose() {
