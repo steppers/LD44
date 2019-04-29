@@ -18,7 +18,7 @@ public class UIScreen {
         return registered;
     }
 
-    public void onTransitionedTo() {
+    public void onTransitionedFrom(String previous) {
 
     }
 

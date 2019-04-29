@@ -39,9 +39,11 @@ public class UIBeingCard extends UIElement {
             {
                 being.inflictDamage(10);
                 screen.getBloodBank().addBlood(10);
+                UIManager.Get().transitionToScreen("blood", 0.15f);
             } else {
                 screen.getBloodBank().addBlood(being.getLifeBlood());
                 screen.getBloodCircle().removeFollower((Follower) being);
+                UIManager.Get().transitionToScreen("blood", 0.15f);
             }
         });
     }

@@ -15,9 +15,4 @@ public class SplashScreen extends UIScreen {
         UIManager.Get().registerScreen(new MainMenuScreen(), "main_menu");
         UIManager.Get().transitionToScreen("main_menu", 1f);
     }
-
-    @Override
-    public void onTransitionedTo() {
-        UIManager.Get().transitionToScreen("main_menu", 1f);
-    }
 }

@@ -18,13 +18,16 @@ public class UIManager implements InputProcessor {
 
     private HashMap<String, UIScreen> screens;
     private UIScreen activeScreen, nextScreen;
-    private float activeOpacity, nextOpacity, fadeSpeed;
+    private String activeScreenId, nextScreenId;
+    private float opacity, fadeSpeed;
+    private boolean fadeOver;
 
     private UIManager() {
         screens = new HashMap<String, UIScreen>();
         activeScreen = nextScreen = null;
-        activeOpacity = 1.0f;
-        nextOpacity = 0.0f;
+        opacity = 1.0f;
+        activeScreenId = "";
+        nextScreenId = "";
     }
 
     public void registerScreen(UIScreen screen, String id) {
@@ -44,17 +47,24 @@ public class UIManager implements InputProcessor {
 
     public void setActiveScreen(String screenId) {
         activeScreen = screens.get(screenId);
-        activeOpacity = 1.0f;
-        nextOpacity = 0.0f;
+        opacity = 1.0f;
+        activeScreenId = screenId;
     }
 
     public void transitionToScreen(String screenId) {
-        transitionToScreen(screenId, 1.0f);
+        transitionToScreen(screenId, 1.0f, true);
     }
 
     public void transitionToScreen(String screenId, float duration) {
+        transitionToScreen(screenId, duration, true);
+    }
+
+    public void transitionToScreen(String screenId, float duration, boolean fadeOver) {
         nextScreen = screens.get(screenId);
         fadeSpeed = 1.0f/duration;
+        nextScreenId = screenId;
+        this.fadeOver = fadeOver;
+        opacity = 0.0f;
     }
 
     public UIScreen getScreen(String screenId) {
@@ -65,22 +75,21 @@ public class UIManager implements InputProcessor {
     }
 
     public void update(float dt) {
-        if(nextScreen != null)
-        {
+        if(nextScreen != null) {
             // Update transition
-            nextOpacity += dt * fadeSpeed;
-            nextOpacity = Math.min(1.0f, nextOpacity);
-            activeOpacity = 1.0f - nextOpacity;
+            opacity += dt * fadeSpeed;
+            opacity = Math.min(1.0f, opacity);
 
-            if(nextOpacity == 1.0f)
+            if(opacity == 1.0f)
             {
                 // End the transition
                 activeScreen = nextScreen;
                 nextScreen = null;
-                activeOpacity = 1.0f;
-                nextOpacity = 0.0f;
 
-                activeScreen.onTransitionedTo();
+                String from = activeScreenId;
+                activeScreenId = nextScreenId;
+                nextScreenId = "";
+                activeScreen.onTransitionedFrom(from);
             }
         }
 
@@ -94,9 +103,17 @@ public class UIManager implements InputProcessor {
         Renderer.Get().GetSpriteBatch().enableBlending();
         Renderer.Get().GetSpriteBatch().setBlendFunction(Gdx.gl20.GL_SRC_ALPHA, Gdx.gl20.GL_ONE_MINUS_SRC_ALPHA);
 
-        activeScreen.render(activeOpacity);
-        if(nextScreen != null)
-            nextScreen.render(nextOpacity);
+        if(nextScreen != null) {
+            if(fadeOver) {
+                activeScreen.render(1.0f);
+                nextScreen.render(opacity);
+            } else {
+                nextScreen.render(1.0f);
+                activeScreen.render(1-opacity);
+            }
+        } else {
+            activeScreen.render(1.0f);
+        }
     }
 
     Vector3 tp = new Vector3();
