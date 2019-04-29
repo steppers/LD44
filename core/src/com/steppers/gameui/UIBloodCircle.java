@@ -124,7 +124,7 @@ public class UIBloodCircle extends UIElement {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(0.15f, 0.15f, 0.15f, opacity * 0.6f);
-        shapeRenderer.circle(bounds.x, bounds.y, bounds.height / 2);
+        shapeRenderer.circle(bounds.x, bounds.y, bounds.height / 2, 64);
 
         shapeRenderer.setColor(0.8f, 0, 0, opacity);
 

@@ -85,10 +85,10 @@ public class UIEnemyDisplay extends UIElement {
                 }
 
                 shapeRenderer.setColor(new Color(0.15f, 0.15f, 0.15f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f, 64);
 
                 shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f, 64);
 
                 shapeRenderer.end();
 
@@ -122,10 +122,10 @@ public class UIEnemyDisplay extends UIElement {
                 }
 
                 shapeRenderer.setColor(new Color(0.15f, 0.15f, 0.15f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f, 64);
 
                 shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f, 64);
 
                 shapeRenderer.end();
 
@@ -159,10 +159,10 @@ public class UIEnemyDisplay extends UIElement {
 
 
                 shapeRenderer.setColor(new Color(0.15f, 0.15f, 0.15f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y + bounds.height/2, bounds.getWidth() / 2.4f, 64);
 
                 shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
-                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f);
+                shapeRenderer.circle(bounds.x+bounds.width/2, bounds.y+ bounds.height/2, bounds.getWidth() / 2.5f, 64);
 
             } else if(gameState.getDungeonMap().getCurrentRoom().getRoomType() == 0) {
                 shapeRenderer.setColor(0.6f + (float) (Math.sin(colorOffset))*0.4f, 0f, 0, opacity);
@@ -189,10 +189,10 @@ public class UIEnemyDisplay extends UIElement {
                 }
 
                 shapeRenderer.setColor(new Color(0.15f, 0.15f, 0.15f, 1f));
-                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.4f);
+                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.4f, 64);
 
                 shapeRenderer.setColor(new Color(0.2f, 0.2f, 0.2f, 1f));
-                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.5f);
+                shapeRenderer.circle(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, bounds.getWidth() / 2.5f, 64);
 
                 shapeRenderer.end();
 
