@@ -18,7 +18,6 @@ public class MainMenuScreen extends UIScreen {
     SpriteBatch spriteBatch;
 
     Texture background;
-    Texture titleTex;
 
     UITextButton newGameButton;
     UITextButton continueGameButton;
@@ -76,7 +75,6 @@ public class MainMenuScreen extends UIScreen {
         registerElement(fullsceenButton);
 
         background = Renderer.Get().GetBackgroundTexture();
-        titleTex = Renderer.Get().GetTitleTexture();
     }
 
     @Override
