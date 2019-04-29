@@ -62,6 +62,7 @@ public class GameScreen extends UIScreen {
         spellBar = new UISpellBar(50, 0, 160 + 4 + (6*2), 32 + 2 + 4);
         spellBar.setAlignment(UIElement.Alignment.ALIGN_BC);
         spellBar.convertToPercentagePos();
+        registerElement(spellBar);
 
         enemyDisplay = new UIEnemyDisplay(50, 100, 220, 220, gameState, bloodCircle);
         enemyDisplay.convertToPercentagePos();
@@ -119,6 +120,7 @@ public class GameScreen extends UIScreen {
         backButton.renderText(opacity);
         bloodBank.renderText(opacity);
         bloodCircle.renderText(opacity);
+        spellBar.renderText(opacity);
         batch.end();
     }
 
