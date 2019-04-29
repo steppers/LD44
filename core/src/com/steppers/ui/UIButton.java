@@ -17,6 +17,7 @@ public class UIButton extends UIElement {
     Color color;
     Color baseColor;
     ButtonHandler handler;
+    boolean active;
 
     boolean mouseDown;
     Texture icon;
@@ -44,6 +45,14 @@ public class UIButton extends UIElement {
         mouseDown = false;
         handler = null;
         this.icon = icon;
+        active = true;
+    }
+
+    public void setActive(boolean active) {
+        if(this.active && active == false)
+            baseColor.set(baseColor.r * 0.5f, baseColor.g * 0.5f, baseColor.b * 0.5f, 1.0f);
+        else if (this.active == false && active)
+            baseColor.set(baseColor.r * 2, baseColor.g * 2, baseColor.b * 2, 1.0f);
     }
 
     public void setHandler(ButtonHandler handler) {
@@ -53,26 +62,32 @@ public class UIButton extends UIElement {
     public boolean handleMouseEvent(float x, float y, MouseEvent event) {
         boolean handled = false;
         if(isMouseOver(x, y)) {
-            switch (event) {
-                case MOUSE_DOWN:
-                    color.set(baseColor.r*2, baseColor.g*2, baseColor.b*2, 1.0f);
-                    mouseDown = true;
-                    handled = true;
-                    break;
-                case MOUSE_UP:
-                    color.set(baseColor);
-                    if(mouseDown && handler != null)
-                    {
-                        handler.onActivate();
-                    }
-                    mouseDown = false;
-                    handled = true;
-                    break;
-                case MOUSE_DRAGGED:
-                    handled = true;
-                case MOUSE_MOVED:
-                    color.set(baseColor.r*1.5f, baseColor.g*1.5f, baseColor.b*1.5f, 1.0f);
-                    break;
+            if(!active) {
+                color.set(baseColor);
+                mouseDown = false;
+                handled = true;
+            } else {
+                switch (event) {
+                    case MOUSE_DOWN:
+                        color.set(baseColor.r * 2, baseColor.g * 2, baseColor.b * 2, 1.0f);
+                        mouseDown = true;
+                        handled = true;
+                        break;
+                    case MOUSE_UP:
+                        color.set(baseColor.r * 1.5f, baseColor.g * 1.5f, baseColor.b * 1.5f, 1.0f);
+                        if (mouseDown && handler != null) {
+                            handler.onActivate();
+                        }
+                        mouseDown = false;
+                        handled = true;
+                        break;
+                    case MOUSE_DRAGGED:
+                        handled = true;
+                    case MOUSE_MOVED:
+                        if(!mouseDown)
+                            color.set(baseColor.r * 1.5f, baseColor.g * 1.5f, baseColor.b * 1.5f, 1.0f);
+                        break;
+                }
             }
         } else {
             color.set(baseColor);
@@ -97,7 +112,8 @@ public class UIButton extends UIElement {
             float iconSize = Math.min(bounds.width, bounds.height) * 0.8f;
             float iconOffsetX = (bounds.width - iconSize)/2;
             float iconOffsetY = (bounds.height - iconSize)/2;
-            spriteBatch.setColor(1, 1, 1, opacity);
+            float colorFactor = active ? 1 : 0.5f;
+            spriteBatch.setColor(colorFactor, colorFactor, colorFactor, opacity);
             spriteBatch.draw(icon, bounds.x + iconOffsetX, bounds.y + iconOffsetY, iconSize, iconSize);
         }
     }
