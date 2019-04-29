@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -23,15 +24,18 @@ public class Renderer {
     private OrthographicCamera camera = new OrthographicCamera();
     private SpriteBatch spriteBatch = new SpriteBatch();
 
+    private GlyphLayout glyphLayout = new GlyphLayout();
     private BitmapFont font12;
     private BitmapFont font16;
     private BitmapFont font20;
     private BitmapFont font24;
+    private BitmapFont font96;
 
     private Texture background;
     private Texture bloodTex;
     private Texture sacrificeTex;
     private Texture bloodOverlayTex;
+    private Texture titleTex;
 
     private Color bloodColor;
 
@@ -40,10 +44,12 @@ public class Renderer {
     }
     public SpriteBatch GetSpriteBatch() { return spriteBatch; }
 
+    public GlyphLayout GetGlyphLayout() { return glyphLayout; }
     public BitmapFont GetFont12() { return font12; }
     public BitmapFont GetFont16() { return font16; }
     public BitmapFont GetFont20() { return font20; }
     public BitmapFont GetFont24() { return font24; }
+    public BitmapFont GetFont96() { return font96; }
 
     public OrthographicCamera GetCamera() {
         return camera;
@@ -57,6 +63,7 @@ public class Renderer {
     }
     public Texture GetSacrificeTexture() { return sacrificeTex; }
     public Texture GetBloodOverlayTexture() { return bloodOverlayTex; }
+    public Texture GetTitleTexture() { return titleTex; }
 
     public Color GetBloodColor() { return bloodColor; }
 
@@ -93,6 +100,11 @@ public class Renderer {
         freeTypeFontParameter.size = 24;
         fontGenerator.generateData(freeTypeFontParameter);
         font24 = fontGenerator.generateFont(freeTypeFontParameter);
+
+
+        freeTypeFontParameter.size = 96;
+        fontGenerator.generateData(freeTypeFontParameter);
+        font96 = fontGenerator.generateFont(freeTypeFontParameter);
     }
 
     public void SetupCamera() {
@@ -113,6 +125,7 @@ public class Renderer {
         bloodTex = new Texture("blood_droplet.png");
         sacrificeTex = new Texture("sacrifice.png");
         bloodOverlayTex = new Texture("blood_overlay.png");
+        titleTex = new Texture("title.png");
     }
 
     public void dispose() {

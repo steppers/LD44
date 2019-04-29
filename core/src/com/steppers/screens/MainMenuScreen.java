@@ -2,6 +2,7 @@ package com.steppers.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.steppers.gamestate.GameState;
@@ -17,6 +18,7 @@ public class MainMenuScreen extends UIScreen {
     SpriteBatch spriteBatch;
 
     Texture background;
+    Texture titleTex;
 
     UITextButton newGameButton;
     UITextButton continueGameButton;
@@ -74,6 +76,7 @@ public class MainMenuScreen extends UIScreen {
         registerElement(fullsceenButton);
 
         background = Renderer.Get().GetBackgroundTexture();
+        titleTex = Renderer.Get().GetTitleTexture();
     }
 
     @Override
@@ -108,6 +111,17 @@ public class MainMenuScreen extends UIScreen {
         newGameButton.renderText(opacity);
         continueGameButton.renderText(opacity);
         fullsceenButton.renderText(opacity);
+
+        // Title layout
+        GlyphLayout glyphLayout = Renderer.Get().GetGlyphLayout();
+        glyphLayout.setText(Renderer.Get().GetFont96(), "LifeBlood");
+
+        // Shadow followed by coloured text
+        Renderer.Get().GetFont96().setColor(0.1f, 0.1f, 0.1f, 0.8f*opacity);
+        Renderer.Get().GetFont96().draw(Renderer.Get().GetSpriteBatch(), "LifeBlood", (Renderer.Get().GetCamera().viewportWidth - glyphLayout.width)/2 + 4, 444 - 4);
+        Renderer.Get().GetFont96().setColor(0.8f, 0, 0, opacity);
+        Renderer.Get().GetFont96().draw(Renderer.Get().GetSpriteBatch(), "LifeBlood", (Renderer.Get().GetCamera().viewportWidth - glyphLayout.width)/2, 444);
+
         spriteBatch.end();
     }
 
